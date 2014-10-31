@@ -1,7 +1,7 @@
 Babel
 =====
 
-Babel is a set of tools to manage versions of VMs and compilers for your favorite languages. With these tools, you can:
+Babel is a set of tools to manage versions of VMs and compilers for your favorite programming languages. With these tools, you can:
 
 - Build a given version of a VM or compiler.
 - Switch between installed versions.
