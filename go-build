@@ -1,0 +1,91 @@
+#!/bin/bash
+
+set -e
+
+# help page
+usage() {
+    cat << EOF
+usage: go-build [-h] [-u url] version
+Build and install a given version of GO:
+-h       Print this help page.
+-u url   The URL of the archive to download.
+version  The version to build and install. Current available versions are:
+         1beta1, go1, 1.0.1, 1.0.2, 1.0.3, 1.1, 1.1.1, 1.1.2, 1.2.1, 1.3,
+         1.3.1, 1.3.2 and 1.3.3.
+EOF
+}
+
+# URL to download the archive
+URL=
+ARCHIVE_ROOT=https://storage.googleapis.com/golang
+
+# read command line arguments
+while getopts “hu:” OPTION
+do
+     case ${OPTION} in
+         h)
+             usage
+             exit
+             ;;
+         u)
+             URL=${OPTARG}
+             ;;
+         ?)
+             usage
+             exit 1
+             ;;
+     esac
+done
+
+# remove the switches we parsed above
+shift `expr ${OPTIND} - 1`
+
+# get version on command line
+if [[ $# != 1 ]]
+then
+    echo "Missing version!"
+    usage
+    exit 1
+else
+    VERSION=$1
+fi
+
+# check that install directory doesn't exist
+INSTALL_DIR=/opt/go/${VERSION}
+
+if [ -d ${INSTALL_DIR} ]
+then
+    echo "Destination directory '${INSTALL_DIR}' already exists, aborting!"
+    exit 1
+fi
+
+# download source archive
+if [[ -z $URL ]]
+then
+    ARCHIVE_FILE=go${VERSION}.src.tar.gz
+    ARCHIVE_URL=${ARCHIVE_ROOT}/${ARCHIVE_FILE}
+else
+    ARCHIVE_FILE=${URL##*/}
+    ARCHIVE_URL=${URL}
+fi
+
+curl -O ${ARCHIVE_URL}
+
+# expand and move directory to target installation one
+tar xvf ${ARCHIVE_FILE}
+rm ${ARCHIVE_FILE}
+mv go ${VERSION}
+sudo mv ${VERSION} ${INSTALL_DIR}
+
+# build from sources
+cd ${INSTALL_DIR}/src
+bash all.bash
+
+sudo chown -R root: ${INSTALL_DIR}
+
+# install go tools
+echo
+echo "Installing go tools..."
+export GOROOT=${INSTALL_DIR}
+sudo -E bash -c "${GOROOT}/bin/go get code.google.com/p/go.tools/cmd/..."
+echo "done"
