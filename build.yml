@@ -8,7 +8,7 @@
     name:        "babel"
     version:     "0.1.0"
     build_dir:   "build"
-    article_md:  "readme.md"
+    article_md:  "README.md"
     article_xml: "#{build_dir}/#{name}.xml"
     article_dir: "../sweetohm/pages"
 
