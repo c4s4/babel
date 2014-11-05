@@ -116,4 +116,4 @@ You can download Babel here: <https://github.com/c4s4/babel/releases>.
 History
 -------
 
-- **1.0.0** (*2014-11-05*): First public release.
+- **1.0.0** (*2014-??-??*): First public release.
