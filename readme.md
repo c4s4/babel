@@ -70,6 +70,10 @@ You must set following environment variables:
 - *GOROOT*: must be */opt/go/current*.
 - *GOPATH*: must be set as you wish (*~/go* for instance).
 
+**Note**:
+
+Even if tests fail (which is the case for release *1.1* for instance), the compiler is installed. Nevertheless, tools are not.
+
 ### Python
 
 - *python-build* script will build the VM for given version.
