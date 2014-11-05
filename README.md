@@ -1,5 +1,10 @@
-Babel
-=====
+% id:     babel
+% title:  Babel
+% author: Michel Casabianca
+% email:  michel.casabianca@gmail.com
+% date:   2014-11-05
+% lang:   en
+% toc:    yes
 
 Babel is a set of tools to manage versions of your favorite programming languages.
 
@@ -102,6 +107,11 @@ You must set following environment variables:
 
 - *PATH*: must include */opt/go/current/bin*.
 - *JAVA_HOME*: must be */opt/java/current*.
+
+Download
+--------
+
+You can download Babel here: <https://github.com/c4s4/babel/releases>.
 
 History
 -------
