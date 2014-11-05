@@ -15,7 +15,7 @@ Build and install a given version of Python on Linux or MacOSX:
 version  The version to build and install.
 
 Following libraries (debian or fink) might be useful:
-- tetex-nox and latex2html to generate documentation (for 2.6.6 versions).
+- tetex-nox and latex2html to generate documentation (for 2.6 versions).
 - libreadline-dev to enable completion and line edition in interpreter.
 - libssl-dev to enable HTTPS.
 - libzip-dev, libtar-dev, libbz2-dev, zlib1g-dev: to enable ZIP and TAR support.
@@ -84,14 +84,7 @@ else
   fi
 fi
 
-read -p "Enter the name of this version [${VERSION}]: " NAME
-
-if [[ ${NAME} == '' ]]
-then
-    NAME=${VERSION}
-fi
-
-INSTALL_DIR=/opt/python/$NAME
+INSTALL_DIR=/opt/python/$VERSION
 
 # check that target install directory doesn't already exists
 if [ -d $INSTALL_DIR ]
