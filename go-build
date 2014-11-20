@@ -128,8 +128,8 @@ bash all.bash
 sudo chown -R root: ${INSTALL_DIR}
 
 # install go tools
-echo
-echo "Installing go tools..."
-export GOROOT=${INSTALL_DIR}
-sudo -E bash -c "${GOROOT}/bin/go get code.google.com/p/go.tools/cmd/..."
-echo "done"
+#echo
+#echo "Installing go tools..."
+#export GOROOT=${INSTALL_DIR}
+#sudo -E bash -c "${GOROOT}/bin/go get code.google.com/p/go.tools/cmd/..."
+#echo "done"
