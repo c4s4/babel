@@ -18,6 +18,11 @@ EOF
 # Compare two version numbers $1 and $2
 # Return 0 if equal, -1 if $1 < $2 and 1 if $1 > $2.
 vercomp () {
+    if [[ $1 == *"rc"* ]]
+    then
+        echo "O"
+        return
+    fi
     if [[ $1 == $2 ]]
     then
         echo "0"
