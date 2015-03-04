@@ -38,5 +38,6 @@ cd ..
 
 cd ..
 sudo mv lua-${VERSION} /opt/lua/${VERSION}
+sudo chown -R root: /opt/lua/${VERSION}
 rm ${ARCHIVE}
 
