@@ -30,6 +30,10 @@
   script:
   - 'git tag "RELEASE-#{version}" && git push --tag'
 
+- target:      install
+  script:
+  - "sudo cp *-build version /opt/bin/"
+
 - target:      clean
   description: Clean generated files
   script:
