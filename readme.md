@@ -33,12 +33,13 @@ go version go1.3.3 linux/amd64
 This tool is able to build and manage following programming languages:
 
 - Go
+- Lua
 - Python
 - Ruby
 - Java
 
 How it works
-------------
+============
 
 Build scripts builds and install VMs or compiler in directory */opt/&lt;lang>/&lt;version>*. Thus GO *1.3.3* would be installed in directory */opt/go/1.3.3*.
 
@@ -49,20 +50,21 @@ Thus, if you put directory */opt/&lt;lang>/current/bin* in your *PATH*, you woul
 This system is straightforward and works fine.
 
 Installation
-------------
+============
 
 To install Babel:
 
 - Drop scripts somewhere in your *PATH*.
-- Create directories */opt/go*, */opt/python*, */opt/ruby* and/or */opt/java* depending on which language you want to manage.
+- Create directories */opt/go*, i*/opt/lua*, */opt/python*, */opt/ruby* and/or */opt/java* depending on which language you want to manage.
 
 Build your VMs with scripts *&lt;lang>-build version* (except for Java that you
 install already built in appropriate directory */opt/java/&lt:version>*).
 
 Languages
----------
+=========
 
-### GO
+GO
+--
 
 GO has no VM, thus:
 
@@ -79,7 +81,14 @@ You must set following environment variables:
 
 Even if tests fail (which is the case for release *1.1* for instance), the compiler is installed. Nevertheless, tools are not.
 
-### Python
+Lua
+---
+
+- *lua-build* script will build the VM for the given version.
+- *version lua* script will switch between these versions.
+
+Python
+------
 
 - *python-build* script will build the VM for given version.
 - *version python* script will switch between these versions.
@@ -93,12 +102,14 @@ To build Python VM, you must install ifollowing development libraries:
 - *libmysqld-dev*, *libmysqlclient-dev* and *python-dev* to install MySQL driver.
 - *libsqlite3-dev* to enable sqlite3 support.
 
-### Ruby
+Ruby
+----
 
 - *ruby-build* script will build the VM for the given version.
 - *version ruby* script will switch between these versions.
 
-### Java
+Java
+----
 
 - There is no build script: drop Java tarball content in */opt/java/&lt;version>* directory.
 - *version java* script will switch between these versions.
@@ -109,11 +120,12 @@ You must set following environment variables:
 - *JAVA_HOME*: must be */opt/java/current*.
 
 Download
---------
+========
 
 You can download Babel here: <https://github.com/c4s4/babel/releases>.
 
 History
--------
+=======
 
-- **1.0.0** (*2014-??-??*): First public release.
+- **0.2.0** (*2015-03-24*): Added *Lua* support.
+- **0.1.0** (*2014-11-05*): First public release.
