@@ -1,5 +1,5 @@
 NAME=babel
-VERSION=0.2.0
+VERSION=0.2.1
 BUILD_DIR=build
 ARTICLE_MD=readme.md
 ARTICLE_XML=$(BUILD_DIR)/$(NAME).xml
