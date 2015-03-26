@@ -9,10 +9,6 @@ Unreleased
 
 Added *Lua* programming language.
 
-### Added
-
-- Added *Lua* support.
-
 0.1.0: 2014-11-05
 -----------------
 
