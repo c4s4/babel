@@ -3,8 +3,10 @@ Change Log
 
 This change log adheres to [Keep a CHANGELOG](http://keepachangelog.com) and [Semantic Versioning](http://semver.org).
 
-Unreleased
-----------
+0.2.1: 2015-03-26
+-----------------
+
+Files renamed according to standards.
 
 0.2.0: 2015-03-24
 -----------------
