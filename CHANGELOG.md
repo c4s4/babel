@@ -1,6 +1,8 @@
 Change Log
 ==========
 
+This change log adheres to [Keep a CHANGELOG](http://keepachangelog.com) and [Semantic Versioning](http://semver.org).
+
 Unreleased
 ----------
 
