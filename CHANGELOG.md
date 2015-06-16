@@ -3,6 +3,11 @@ Change Log
 
 This change log adheres to [Keep a CHANGELOG](http://keepachangelog.com) and [Semantic Versioning](http://semver.org).
 
+?.?.?: 2015-06-??
+-----------------
+
+Added [Rust](http://www.rust-lang.org) management.
+
 0.2.1: 2015-03-26
 -----------------
 
