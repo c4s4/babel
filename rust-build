@@ -22,7 +22,7 @@ if [ -d "/opt/rust/${VERSION}" ]; then
 fi
 
 
-ARCHIVE="rustc-${VERSION}.src.tar.gz"
+ARCHIVE="rustc-${VERSION}-src.tar.gz"
 URL="https://static.rust-lang.org/dist/${ARCHIVE}"
 
 cd ${TMPDIR}
