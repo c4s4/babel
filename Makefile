@@ -22,7 +22,7 @@ install: install
 	@echo "$(YELLOW)Installing scripts$(CLEAR)"
 	sudo cp *-build version /opt/bin/
 
-release: clean article install
+release: clean
 	@echo "$(YELLOW)Releasing project$(CLEAR)"
 	release
 
