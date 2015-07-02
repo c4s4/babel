@@ -1,17 +1,17 @@
 # Semantic changelog https://github.com/c4s4/changelog
 
-- release: 2.3.0
+- version: 2.3.0
   date:    2015-07-02
   summary: Added Rust programming language
 
-- release: 0.2.1
+- version: 0.2.1
   date:    2015-03-26
   summary: Files renamed according to standards
 
-- release: 0.2.0
+- version: 0.2.0
   date:    2015-03-24
   summary: Added Lua programming language
 
-- release: 0.1.0
+- version: 0.1.0
   date:    2014-11-05
   summary: First public release
