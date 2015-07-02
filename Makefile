@@ -22,15 +22,9 @@ install: install
 	@echo "$(YELLOW)Installing scripts$(CLEAR)"
 	sudo cp *-build version /opt/bin/
 
-release: clean article install
+release: clean
 	@echo "$(YELLOW)Releasing project$(CLEAR)"
-	git diff --quiet --exit-code HEAD || (echo "$(RED)There are uncommitted changes$(CLEAR)"; exit 1)
-	@if [ `git rev-parse --abbrev-ref HEAD` != "master" ]; then \
-		echo "$(RED)You must release on branch master$(CLEAR)"; \
-		exit 1; \
-	fi
-	git tag "$(VERSION)"
-	git push --tag
+	release
 
 clean:
 	@echo "$(YELLOW)Cleaning generated files$(CLEAR)"
