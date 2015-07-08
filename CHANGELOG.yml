@@ -1,5 +1,10 @@
 # Semantic changelog https://github.com/c4s4/changelog
 
+- version: ?.?.?
+  date:    ????-??-??
+  fixed:
+  - "Fixed install target dependency (was an infinite loop)."
+
 - version: 2.3.1
   date:    2015-07-08
   summary: Added support for beta GO releases
