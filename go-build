@@ -11,14 +11,14 @@ Build and install a given version of GO:
 -u url   The URL of the archive to download.
 version  The version to build and install. Current available versions are:
          1beta1, go1, 1.0.1, 1.0.2, 1.0.3, 1.1, 1.1.1, 1.1.2, 1.2.1, 1.3,
-         1.3.1, 1.3.2 and 1.3.3.
+         1.3.1, 1.3.2, 1.3.3, 1.4.0, 1.4.1 and 1.4.2.
 EOF
 }
 
 # Compare two version numbers $1 and $2
 # Return 0 if equal, -1 if $1 < $2 and 1 if $1 > $2.
 vercomp () {
-    if [[ $1 == *"rc"* ]]
+    if [[ $1 == *"rc"* || $1 == *"beta"* ]]
     then
         echo "O"
         return
