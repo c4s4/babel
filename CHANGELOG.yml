@@ -4,6 +4,7 @@
   date:    ????-??-??
   fixed:
   - "Fixed install target dependency (was an infinite loop)."
+  - "Fixed README regarding Rust (that was not in the list)."
 
 - version: 2.3.1
   date:    2015-07-08
