@@ -18,7 +18,7 @@ article:
 	md2xml -a -o $(ARTICLE_XML) $(ARTICLE_MD)
 	cp $(ARTICLE_XML) $(SITE_DIR)
 
-install: install
+install:
 	@echo "$(YELLOW)Installing scripts$(CLEAR)"
 	sudo cp *-build version /opt/bin/
 

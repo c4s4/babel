@@ -33,10 +33,11 @@ go version go1.3.3 linux/amd64
 This tool is able to build and manage following programming languages:
 
 - Go
-- Lua
 - Python
 - Ruby
 - Java
+- Lua
+- Rust
 
 How it works
 ============
@@ -81,12 +82,6 @@ You must set following environment variables:
 
 Even if tests fail (which is the case for release *1.1* for instance), the compiler is installed. Nevertheless, tools are not.
 
-Lua
----
-
-- *lua-build* script will build the VM for the given version.
-- *version lua* script will switch between these versions.
-
 Python
 ------
 
@@ -118,6 +113,18 @@ You must set following environment variables:
 
 - *PATH*: must include */opt/go/current/bin*.
 - *JAVA_HOME*: must be */opt/java/current*.
+
+Lua
+---
+
+- *lua-build* script will build the VM for the given version.
+- *version lua* script will switch between these versions.
+
+Rust
+----
+
+- *rust-build* script will build Rust from sources (which is *very* long).
+- *version rust* script will switch between installed versions.
 
 Download
 ========
