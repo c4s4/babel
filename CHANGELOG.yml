@@ -1,5 +1,13 @@
 # Semantic changelog https://github.com/c4s4/changelog
 
+- version: 2.3.3
+  date:    2015-07-22
+  summary: Fixed prompt text
+  fixed:
+  - "Replaced 'default' with 'system' in prompt."
+  - "If pressing ENTER without selection, keeps current version."
+  - "Removed warnings."
+
 - version: 2.3.2
   date:    2015-07-10
   summary: Bug fix release
