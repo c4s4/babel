@@ -34,7 +34,7 @@ Select python, ruby or java version in a menu:
         return sorted(glob.glob(self.soft_root()+'/[0-9].[0-9]*'))
 
     def get_versions(self):
-        return [version[len(self.soft_root())+1:] for version in self.soft_paths()]
+        return [v[len(self.soft_root())+1:] for v in self.soft_paths()]
 
     def get_current_version(self):
         path = os.path.realpath("%s/current" % self.soft_root())
@@ -43,10 +43,12 @@ Select python, ruby or java version in a menu:
     def set_version(self, index):
         old_dir = "%s/current" % self.soft_root()
         if index == -1:
-            print("Selecting default %s version" % self.soft)
-            os.system("sudo rm %s" % old_dir)
+            print("Selecting system %s version" % self.soft)
+            if os.path.exists(old_dir):
+                os.system("sudo rm %s" % old_dir)
         else:
-            print("Selecting %s version '%s'" % (self.soft, self.get_versions()[index]))
+            print("Selecting %s version '%s'" %
+                  (self.soft, self.get_versions()[index]))
             directory = self.soft_paths()[index]
             if os.path.exists(old_dir):
                 os.system("sudo rm %s" % old_dir)
@@ -61,7 +63,7 @@ Select python, ruby or java version in a menu:
             selected = self.SELECTED
         else:
             selected = ''
-        print("0: Default"+selected)
+        print("0: System"+selected)
         for version in self.soft_paths():
             number = version[len(self.soft_root())+1:]
             if number == current_version:
@@ -80,11 +82,14 @@ Select python, ruby or java version in a menu:
                 print("\nUser abort!")
                 sys.exit(0)
             if re.match('\d+', choice) and int(choice) <= maximum and \
-                int(choice) >= 0:
+                    int(choice) >= 0:
                 index = int(choice) - 1
                 chosen = True
+            elif choice == '':
+                print("Keeping current")
+                sys.exit(0)
             else:
-                print("Bad version number, please choose a number between 0 and %s" % \
+                print("Bad version, please choose a number between 0 and %s" %
                       str(maximum))
         # return index in version table
         return index
@@ -95,11 +100,11 @@ Select python, ruby or java version in a menu:
             opts, args = getopt.getopt(sys.argv[1:], 'h', ['help'])
         except getopt.GetoptError:
             print('Error parsing command line:')
-            print(HELP)
+            print(Version.HELP)
             sys.exit(1)
         for o, a in opts:
             if o in ('-h', '--help'):
-                print(HELP)
+                print(Version.HELP)
                 sys.exit(0)
             else:
                 print('Unhandled option')
@@ -114,4 +119,3 @@ Select python, ruby or java version in a menu:
 
 if __name__ == '__main__':
     Version.run()
-
