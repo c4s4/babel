@@ -1,20 +1,18 @@
-% id:     babel
-% title:  Babel
-% author: Michel Casabianca
-% email:  michel.casabianca@gmail.com
-% date:   2014-11-05
-% lang:   en
-% toc:    yes
+Babel
+=====
+
+- Project: <https://github.com/c4s4/babel>.
+- Download: <https://github.com/c4s4/babel/releases>.
 
 Babel is a set of tools to manage versions of your favorite programming languages.
 
-To build and install GO *1.3.3*:
+To download, build from sources and install GO *1.4.2*:
 
 ```
-go-build 1.3.3
+go-build 1.4.2
 ```
 
-To use this GO version, run *version* script that list all installed versions:
+To use this GO version, run *version* script that will list all installed versions and let you select one:
 
 ```
 $ version go
@@ -24,10 +22,11 @@ Please choose a version:
 2: 1.1.2
 3: 1.2.2 *
 4: 1.3.3
-4
-Selecting go version '1.3.3'
+5: 1.4.2
+5
+Selecting go version '1.4.2'
 $ go version
-go version go1.3.3 linux/amd64
+go version go1.4.2 linux/amd64
 ```
 
 This tool is able to build and manage following programming languages:
@@ -40,9 +39,9 @@ This tool is able to build and manage following programming languages:
 - Rust
 
 How it works
-============
+------------
 
-Build scripts builds and install VMs or compiler in directory */opt/&lt;lang>/&lt;version>*. Thus GO *1.3.3* would be installed in directory */opt/go/1.3.3*.
+Build scripts builds and install VMs or compiler in directory */opt/&lt;lang>/&lt;version>*. Thus GO *1.4.2* would be installed in directory */opt/go/1.4.2*.
 
 Script *version* selects a given version by making a symbolic link between */opt/&lt;lang>/&lt;version>* and */opt/&lt;lang>/current*.
 
@@ -51,26 +50,24 @@ Thus, if you put directory */opt/&lt;lang>/current/bin* in your *PATH*, you woul
 This system is straightforward and works fine.
 
 Installation
-============
+------------
 
 To install Babel:
 
 - Drop scripts somewhere in your *PATH*.
-- Create directories */opt/go*, i*/opt/lua*, */opt/python*, */opt/ruby* and/or */opt/java* depending on which language you want to manage.
+- Create directories for languages you want to manage (*/opt/go*, */opt/lua*, */opt/python*, */opt/ruby* and/or */opt/java*).
 
-Build your VMs with scripts *&lt;lang>-build version* (except for Java that you
-install already built in appropriate directory */opt/java/&lt:version>*).
+Build your VMs with scripts *&lt;lang>-build version* (except for Java that you install already built in appropriate directory */opt/java/&lt:version>*).
 
 Languages
-=========
+---------
 
-GO
---
+### GO
 
 GO has no VM, thus:
 
-- *go-build* script will install a given compiler and GO tools.
-- *version go* script will switch between these versions.
+- *go-build* script will install a given compiler.
+- *version go* script will switch between installed versions.
 
 You must set following environment variables:
 
@@ -80,15 +77,14 @@ You must set following environment variables:
 
 **Note**:
 
-Even if tests fail (which is the case for release *1.1* for instance), the compiler is installed. Nevertheless, tools are not.
+Even if tests fail (which is the case for release *1.1* for instance), the compiler is installed.
 
-Python
-------
+### Python
 
 - *python-build* script will build the VM for given version.
-- *version python* script will switch between these versions.
+- *version python* script will switch between installed versions.
 
-To build Python VM, you must install ifollowing development libraries:
+To build Python VM, you must install following development libraries:
 
 - *tetex-nox* and *latex2html* to generate documentation for 2.6 and earlier versions.
 - *libreadline-dev* to enable completion and line edition in interpreter.
@@ -97,36 +93,29 @@ To build Python VM, you must install ifollowing development libraries:
 - *libmysqld-dev*, *libmysqlclient-dev* and *python-dev* to install MySQL driver.
 - *libsqlite3-dev* to enable sqlite3 support.
 
-Ruby
-----
+### Ruby
 
 - *ruby-build* script will build the VM for the given version.
-- *version ruby* script will switch between these versions.
+- *version ruby* script will switch between installed versions.
 
-Java
-----
+### Java
 
 - There is no build script: drop Java tarball content in */opt/java/&lt;version>* directory.
-- *version java* script will switch between these versions.
+- *version java* script will switch between installed versions.
 
 You must set following environment variables:
 
 - *PATH*: must include */opt/go/current/bin*.
 - *JAVA_HOME*: must be */opt/java/current*.
 
-Lua
----
+### Lua
 
 - *lua-build* script will build the VM for the given version.
-- *version lua* script will switch between these versions.
+- *version lua* script will switch between installed versions.
 
-Rust
-----
+### Rust
 
 - *rust-build* script will build Rust from sources (which is *very* long).
 - *version rust* script will switch between installed versions.
 
-Download
-========
-
-You can download Babel here: <https://github.com/c4s4/babel/releases>.
+*Enjoy!*
