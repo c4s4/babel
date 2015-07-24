@@ -14,7 +14,7 @@ archive:
 	@echo "$(YELLOW)Building distribution archive$(CLEAR)"
 	rm -rf $(BUILD_DIR)
 	mkdir -p $(BUILD_DIR)/$(NAME)-$(VERSION)/
-	cp *-build version $(BUILD_DIR)/$(NAME)-$(VERSION)/
+	cp *-build version LICENSE.txt $(BUILD_DIR)/$(NAME)-$(VERSION)/
 	md2pdf README.md && mv README.pdf $(BUILD_DIR)/$(NAME)-$(VERSION)/
 	changelog to html style > $(BUILD_DIR)/$(NAME)-$(VERSION)/CHANGELOG.html
 	cd $(BUILD_DIR) && tar cvzf $(NAME)-$(VERSION).tar.gz $(NAME)-$(VERSION)/	
