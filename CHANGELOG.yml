@@ -1,5 +1,11 @@
 # Semantic changelog https://github.com/c4s4/changelog
 
+- version: 2.3.4
+  date:    2015-07-25
+  summary: Fixed PIP installation
+  fixed:
+  - "Fixed PIP installation, that should work on all Python versions."
+
 - version: 2.3.3
   date:    2015-07-22
   summary: Fixed prompt text
