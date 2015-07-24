@@ -10,8 +10,7 @@ Build and install a given version of Python on Linux or MacOSX:
 -h       Print this help page.
 -t       Run tests (that might take time on some platforms).
 -d       Build documentation (installed in doc directory).
--p       Install PIP (and easy_install). Since Python 2.7.9 and 3.4, PIP may
-         be installed from Python with 'python -m ensurepip'.
+-p       Install PIP (and easy_install).
 version  The version to build and install.
 
 Following libraries (debian or fink) might be useful:
@@ -65,8 +64,9 @@ else
 fi
 
 # extract major and minor part of version
-MAJOR=`echo $VERSION |  cut -d. -f1`
-MINOR=`echo $VERSION |  cut -d. -f2`
+MAJOR=`echo $VERSION | cut -d. -f1`
+MINOR=`echo $VERSION | cut -d. -f2`
+DEBUG=`echo $VERSION | cut -d. -f3`
 
 # decide target and destination for built documentation
 if [ $MAJOR -gt 2 ];
@@ -150,17 +150,15 @@ cd ..
 sudo rm -rf Python-$VERSION
 rm $ARCHIVE
 
-if [[ $PIP ]]
-then
-    echo "Installing distribute..."
-    curl -O http://python-distribute.org/distribute_setup.py
-    sudo $INSTALL_DIR/bin/python distribute_setup.py
-    sudo rm distribute_setup.py
-    sudo rm distribute-*.tar.gz
-
-    echo "Installing PIP..."
+function install_pip
+{
     curl -O https://bootstrap.pypa.io/get-pip.py
     sudo $INSTALL_DIR/bin/python get-pip.py
     rm get-pip.py
-fi
+}
 
+if [[ $PIP ]]
+then
+    echo "Installing PIP..."
+    sudo $INSTALL_DIR/bin/python -m ensurepip || install_pip
+fi
