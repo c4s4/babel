@@ -8,26 +8,22 @@ Babel is a set of tools to manage versions of your favorite programming language
 
 To download, build from sources and install GO *1.4.2*:
 
-```
-go-build 1.4.2
-```
+    go-build 1.4.2
 
 To use this GO version, run *version* script that will list all installed versions and let you select one:
 
-```
-$ version go
-Please choose a version:
-0: Default
-1: 1.0.3
-2: 1.1.2
-3: 1.2.2 *
-4: 1.3.3
-5: 1.4.2
-5
-Selecting go version '1.4.2'
-$ go version
-go version go1.4.2 linux/amd64
-```
+    $ version go
+    Please choose a version:
+    0: Default
+    1: 1.0.3
+    2: 1.1.2
+    3: 1.2.2 *
+    4: 1.3.3
+    5: 1.4.2
+    5
+    Selecting go version '1.4.2'
+    $ go version
+    go version go1.4.2 linux/amd64
 
 This tool is able to build and manage following programming languages:
 
@@ -57,7 +53,7 @@ To install Babel:
 - Drop scripts somewhere in your *PATH*.
 - Create directories for languages you want to manage (*/opt/go*, */opt/lua*, */opt/python*, */opt/ruby* and/or */opt/java*).
 
-Build your VMs with scripts *&lt;lang>-build version* (except for Java that you install already built in appropriate directory */opt/java/&lt:version>*).
+Build your VMs with scripts *&lt;lang>-build version* (except for Java that you install already built in appropriate directory */opt/java/&lt;version>*).
 
 Languages
 ---------
@@ -83,6 +79,7 @@ Even if tests fail (which is the case for release *1.1* for instance), the compi
 
 - *python-build* script will build the VM for given version.
 - *version python* script will switch between installed versions.
+- *python-env* script to create a virtualenv with an installed VM.
 
 To build Python VM, you must install following development libraries:
 

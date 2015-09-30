@@ -1,0 +1,134 @@
+#!/usr/bin/env python
+# Script to create a virtualenv using an existing Python VM
+
+import os
+import re
+import sys
+import glob
+import getopt
+
+# fix input in Python 2 and 3
+try:
+    input = raw_input
+except NameError:
+    pass
+
+# The soft to install
+SOFT = 'python'
+# The base for home directories
+SOFT_ROOT = '/opt/%s' % SOFT
+# The sorted list of installed versions
+SOFT_PATHS = glob.glob(SOFT_ROOT+'/[0-9].[0-9]*')
+SOFT_PATHS.sort()
+# Comment for current version
+SELECTED = ' *'
+# Possible virtualenv commands
+VIRTUALENV_COMMANDS = ('virtualenv', 'pyvenv')
+# Command line help
+HELP = '''python-env [-h] [-p] [dir]
+Create a virtualenv in current directory using an existing Python VM chosen in
+a menu.
+-h      To print this help screen.
+dir     Name of created directory (defaults to 'env').'''
+
+
+# Get a list of installed versions.
+# Return: an array of versions.
+def get_versions():
+    return [version[len(SOFT_ROOT)+1:] for version in SOFT_PATHS]
+
+
+# Get the current version.
+# Return: the current version (for instance: '1.2.3').
+def get_current_version():
+    path = os.path.realpath(os.path.join(SOFT_ROOT, 'current'))
+    return path[path.rindex(os.path.sep)+1:]
+
+
+# Ask for the version and check it against the list of installed versions.
+# Return: choosen version as an index in the versions table.
+def ask_version():
+    # print version list
+    selected_index = 0
+    print('Please choose a version:')
+    index = 1
+    current_version = get_current_version()
+    if current_version == 'current':
+        selected = SELECTED
+    else:
+        selected = ''
+    print("0: System"+selected)
+    for version in SOFT_PATHS:
+        number = version[len(SOFT_ROOT)+1:]
+        if number == current_version:
+            selected = SELECTED
+            selected_index = index
+        else:
+            selected = ''
+        print(str(index)+': '+str(number)+selected)
+        index += 1
+    # ask for the version
+    chosen = None
+    maximum = len(SOFT_PATHS)
+    while not chosen:
+        try:
+            choice = input()
+        except KeyboardInterrupt:
+            print("\nUser abort!")
+            sys.exit(0)
+        if re.match('\d+', choice) and int(choice) <= maximum \
+                and int(choice) >= 0:
+            index = int(choice) - 1
+            chosen = True
+        elif choice == '':
+            return selected_index - 1
+        else:
+            print("Bad version number, choose a number between 0 and %s" %
+                  str(maximum))
+    # return index in version table
+    return index
+
+
+def virtualenv_path(python_path):
+    for executable in VIRTUALENV_COMMANDS:
+        path = os.path.join(python_path, 'bin', executable)
+        if os.path.exists(path):
+            return path
+    raise Exception("virtualenv was not found for Python %s" % python_path)
+
+
+def main(directory='env'):
+    index = ask_version()
+    python_path = SOFT_PATHS[index]
+    virtualenv = virtualenv_path(python_path)
+    command = "%s %s" % (virtualenv, directory)
+    code = os.system(command)
+    if code != 0:
+        print("ERROR running command '%s'" % command)
+        sys.exit(code)
+
+
+# parse command line arguments
+if __name__ == '__main__':
+    _dir = 'env'
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], 'hp', ['help', 'packages'])
+    except getopt.GetoptError:
+        print('Error parsing command line:')
+        print(HELP)
+        sys.exit(1)
+    for o, a in opts:
+        if o in ('-h', '--help'):
+            print(HELP)
+            sys.exit(0)
+        else:
+            print('Unhandled option')
+            sys.exit(2)
+    if len(args) > 0:
+        if len(args) > 1:
+            print("Can pass only one directory name")
+            print(HELP)
+            sys.exit(1)
+        else:
+            _dir = args[0]
+    main(_dir)

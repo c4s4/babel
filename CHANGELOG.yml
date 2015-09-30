@@ -1,5 +1,11 @@
 # Semantic changelog https://github.com/c4s4/changelog
 
+- version: 2.4.0
+  date:    2015-09-30
+  summary: Added python-env script
+  added:
+  - "Added python-env script to create a virtualenv with installed VMs."
+
 - version: 2.3.4
   date:    2015-07-25
   summary: Fixed PIP installation
