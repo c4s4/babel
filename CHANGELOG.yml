@@ -1,5 +1,11 @@
 # Semantic changelog https://github.com/c4s4/changelog
 
+- version: 2.4.1
+  date:    2016-02-18
+  summary: Added GOROOT_BOOTSTRAP in go-build
+  added:
+  - "Added GOROOT_BOOTSTRAP in go-build to build GO > 1.4."
+
 - version: 2.4.0
   date:    2015-09-30
   summary: Added python-env script

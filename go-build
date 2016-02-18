@@ -2,6 +2,9 @@
 
 set -e
 
+# path to a GO installation (1.4 of more) needed to build GO 1.5 and up
+export GOROOT_BOOTSTRAP=/opt/go/current
+
 # help page
 usage() {
     cat << EOF
