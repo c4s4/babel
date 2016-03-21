@@ -8,6 +8,7 @@ usage() {
 usage: build-python [-h] [-t] [-d] [-p] version
 Build and install a given version of Python on Linux or MacOSX:
 -h       Print this help page.
+-a       Install dependencies with apt-get.
 -t       Run tests (that might take time on some platforms).
 -d       Build documentation (installed in doc directory).
 -p       Install PIP (and easy_install).
@@ -23,6 +24,11 @@ Following libraries (debian or fink) might be useful:
 EOF
 }
 
+# install dependencies with apt-get
+dependencies() {
+    sudo apt-get install libreadline-dev libssl-dev libzip-dev libtar-dev libbz2-dev zlib1g-dev libmysqld-dev, libmysqlclient-dev python-dev libsqlite3-dev
+}
+
 # read command line arguments
 TEST=''
 DOCS=''
@@ -32,6 +38,10 @@ do
     case $OPTION in
         h)
             usage
+            exit
+            ;;
+        a)
+            dependencies
             exit
             ;;
         t)
