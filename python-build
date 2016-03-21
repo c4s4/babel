@@ -26,14 +26,14 @@ EOF
 
 # install dependencies with apt-get
 dependencies() {
-    sudo apt-get install libreadline-dev libssl-dev libzip-dev libtar-dev libbz2-dev zlib1g-dev libmysqld-dev, libmysqlclient-dev python-dev libsqlite3-dev
+    sudo apt-get update && sudo apt-get install libreadline-dev libssl-dev libzip-dev libtar-dev libbz2-dev zlib1g-dev libmysqld-dev libmysqlclient-dev python-dev libsqlite3-dev
 }
 
 # read command line arguments
 TEST=''
 DOCS=''
 PIP=''
-while getopts “htdp” OPTION
+while getopts “hatdp” OPTION
 do
     case $OPTION in
         h)
