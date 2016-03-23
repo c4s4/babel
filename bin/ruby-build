@@ -1,0 +1,63 @@
+#!/bin/sh
+#
+# Script to download and install Ruby.
+# 
+# VERSION=1.8.6-p287
+# VERSION=1.8.7-p72
+# VERSION=1.9.1-p376
+
+set -e
+
+# get version on command line
+if [ $# -ne 1 ]
+then
+  echo "Usage: `basename $0` VERSION"
+  exit 1
+fi
+
+VERSION=$1
+
+# extract major and minor part of version
+MAJOR=`echo $VERSION |  cut -d. -f1`
+MINOR=`echo $VERSION |  cut -d. -f2`
+
+INSTALL_DIR=/opt/ruby/$VERSION
+ARCHIVE=ruby-$VERSION.tar.gz
+DOWNLOAD=ftp://ftp.ruby-lang.org/pub/ruby/$MAJOR.$MINOR
+
+echo "Downloading Ruby Archive..."
+wget $DOWNLOAD/$ARCHIVE
+
+echo "Building Ruby..."
+tar zxf $ARCHIVE
+cd ruby-$VERSION
+case `uname` in
+Darwin)
+        case `uname -m` in
+        "Power Macintosh")
+              # --enable-pthread crashes compilation on PPC
+              OPTIONS="--enable-mac-tcltk-framework"
+              ;;
+        i386)
+              OPTIONS="--enable-mac-tcltk-framework --enable-pthread"
+              # pthread ne marche pas non plus pour 1.8.6 sur intel
+              #OPTIONS="--enable-mac-tcltk-framework"
+              ;;
+        esac
+        ;;
+Linux)
+        OPTIONS=""
+        ;;
+esac
+./configure --prefix=$INSTALL_DIR $OPTIONS
+make
+#make test
+
+echo "Installing Ruby..."
+sudo make install
+sudo make install-doc
+
+echo "Cleaning..."
+cd ..
+rm -rf ruby-$VERSION
+rm $ARCHIVE
