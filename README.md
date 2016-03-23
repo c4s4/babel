@@ -4,13 +4,15 @@ Babel
 - Project: <https://github.com/c4s4/babel>.
 - Download: <https://github.com/c4s4/babel/releases>.
 
-Babel is a set of tools to manage versions of your favorite programming languages.
+Babel is a set of tools to manage versions of your favorite programming
+languages.
 
 To download, build from sources and install GO *1.4.2*:
 
     go-build 1.4.2
 
-To use this GO version, run *version* script that will list all installed versions and let you select one:
+To use this GO version, run *version* script that will list all installed
+versions and let you select one:
 
     $ version go
     Please choose a version:
@@ -37,11 +39,15 @@ This tool is able to build and manage following programming languages:
 How it works
 ------------
 
-Build scripts builds and install VMs or compiler in directory */opt/&lt;lang>/&lt;version>*. Thus GO *1.4.2* would be installed in directory */opt/go/1.4.2*.
+Build scripts builds and install VMs or compiler in directory 
+*/opt/&lt;lang>/&lt;version>*. Thus GO *1.4.2* would be installed in directory
+*/opt/go/1.4.2*.
 
-Script *version* selects a given version by making a symbolic link between */opt/&lt;lang>/&lt;version>* and */opt/&lt;lang>/current*.
+Script *version* selects a given version by making a symbolic link between
+*/opt/&lt;lang>/&lt;version>* and */opt/&lt;lang>/current*.
 
-Thus, if you put directory */opt/&lt;lang>/current/bin* in your *PATH*, you would run selected version.
+Thus, if you put directory */opt/&lt;lang>/current/bin* in your *PATH*, you 
+would run selected version.
 
 This system is straightforward and works fine.
 
@@ -50,10 +56,15 @@ Installation
 
 To install Babel:
 
-- Drop scripts somewhere in your *PATH*.
-- Create directories for languages you want to manage (*/opt/go*, */opt/lua*, */opt/python*, */opt/ruby* and/or */opt/java*).
+- Drop scripts in *bin* directory somewhere in your *PATH*.
+- Create directories for languages you want to manage (*/opt/go*, */opt/lua*,
+  */opt/python*, */opt/ruby* and/or */opt/java*).
+- Copy profile files in *etc* directory to */etc/profile.d/*. These scripts
+  are sourced at startup and define environment variables. For instance,
+  it will add */opt/&lt;lang>/current/bin* in your *PATH*.
 
-Build your VMs with scripts *&lt;lang>-build version* (except for Java that you install already built in appropriate directory */opt/java/&lt;version>*).
+Build your VMs with scripts *&lt;lang>-build version* (except for Java that you
+install already built in appropriate directory */opt/java/&lt;version>*).
 
 Languages
 ---------
