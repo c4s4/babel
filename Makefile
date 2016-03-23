@@ -17,7 +17,7 @@ help:
 
 install:
 	@echo "$(YELLOW)Installing scripts$(CLEAR)"
-	sudo cp *-build version /opt/bin/
+	sudo cp bin/* /opt/bin/
 
 archive:
 	@echo "$(YELLOW)Building distribution archive$(CLEAR)"
