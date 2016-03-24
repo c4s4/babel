@@ -11,7 +11,8 @@ Build and install a given version of Python on Linux or MacOSX:
 -a       Install dependencies with apt-get.
 -t       Run tests (that might take time on some platforms).
 -d       Build documentation (installed in doc directory).
--p       Install PIP (and easy_install).
+-p       Don't install PIP (and easy_install).
+-v       Don't install Virtualenv.
 version  The version to build and install.
 
 Following libraries (debian or fink) might be useful:
@@ -32,7 +33,8 @@ dependencies() {
 # read command line arguments
 TEST=''
 DOCS=''
-PIP=''
+PIP=1
+VENV=1
 while getopts “hatdp” OPTION
 do
     case $OPTION in
@@ -51,7 +53,10 @@ do
             DOCS=1
             ;;
         p)
-            PIP=1
+            PIP=0
+            ;;
+        v)
+            VENV=0
             ;;
         ?)
             usage
@@ -171,4 +176,10 @@ if [[ $PIP ]]
 then
     echo "Installing PIP..."
     sudo $INSTALL_DIR/bin/python -m ensurepip || install_pip
+fi
+
+if [[ $VENV ]]
+then
+    echo "Installing Virtualenv..."
+    sudo $INSTALL_DIR/bin/pip install virtualenv
 fi
