@@ -1,8 +1,8 @@
 # Semantic changelog https://github.com/c4s4/changelog
 
 - version: 2.7.0
-  date:    2016-03-??
-  summary: ???
+  date:    2016-03-24
+  summary: Added Virtualenv support
   added:
   - "Added an option to install virtualenv."
   changed:
