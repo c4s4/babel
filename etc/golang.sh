@@ -3,5 +3,7 @@
 
 export PATH=/opt/go/current/bin:$PATH
 export GOROOT=/opt/go/current
+export GOPATH=~/.go
+export PATH=$GOPATH/bin:$PATH
 # fix go on raspberry pi
 export GOARM=5
