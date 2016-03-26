@@ -18,6 +18,7 @@ help:
 install:
 	@echo "$(YELLOW)Installing scripts$(CLEAR)"
 	sudo cp bin/* /opt/bin/
+	sudo cp etc/* /etc/profile.d/
 
 archive:
 	@echo "$(YELLOW)Building distribution archive$(CLEAR)"
