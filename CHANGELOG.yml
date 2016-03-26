@@ -5,6 +5,7 @@
   summary: Improved configuration
   fixed:
   - "Moved configuration stuff from .profile to golang.sh and python.sh"
+  - "Fixed install target to copy configuration files."
 
 - version: 2.7.0
   date:    2016-03-24
