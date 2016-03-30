@@ -90,7 +90,7 @@ Even if tests fail (which is the case for release *1.1* for instance), the compi
 
 - *python-build* script will build the VM for given version.
 - *version python* script will switch between installed versions.
-- *python-env* script to create a virtualenv with an installed VM.
+- *python-venv* script to create a virtualenv with an installed VM.
 
 To build Python VM, you must install following development libraries:
 
