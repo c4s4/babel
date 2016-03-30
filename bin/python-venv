@@ -24,12 +24,14 @@ SOFT_PATHS.sort()
 SELECTED = ' *'
 # Possible virtualenv commands
 VIRTUALENV_COMMANDS = ('virtualenv', 'pyvenv')
+# Default virtualenv directory name
+DEFAULT_DIR = 'venv'
 # Command line help
-HELP = '''python-env [-h] [-p] [dir]
+HELP = '''python-venv [-h] [-p] [dir]
 Create a virtualenv in current directory using an existing Python VM chosen in
 a menu.
 -h      To print this help screen.
-dir     Name of created directory (defaults to 'env').'''
+dir     Name of created directory (defaults to 'venv').'''
 
 
 # Get a list of installed versions.
@@ -97,7 +99,7 @@ def virtualenv_path(python_path):
     raise Exception("virtualenv was not found for Python %s" % python_path)
 
 
-def main(directory='env'):
+def main(directory=DEFAULT_DIR):
     index = ask_version()
     python_path = SOFT_PATHS[index]
     virtualenv = virtualenv_path(python_path)
@@ -110,7 +112,7 @@ def main(directory='env'):
 
 # parse command line arguments
 if __name__ == '__main__':
-    _dir = 'env'
+    _dir = DEFAULT_DIR
     try:
         opts, args = getopt.getopt(sys.argv[1:], 'hp', ['help', 'packages'])
     except getopt.GetoptError:
