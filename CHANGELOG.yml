@@ -6,6 +6,13 @@
   fixed:
   - "Improved configuration scripts."
 
+- version: 2.9.0
+  date:    2016-03-30
+  summary: python-env renamed python-venv
+  fixed:
+  - "Script python-env renamed python-venv."
+  - "Default virtualenv directory name renamed from env to venv."
+
 - version: 2.8.0
   date:    2016-03-26
   summary: Improved configuration
