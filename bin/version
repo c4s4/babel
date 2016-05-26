@@ -19,9 +19,10 @@ except NameError:
 
 class Version(object):
 
-    HELP = '''version [-h] [-l] [-e cmd] [python|ruby|java|lua|rust]
-Select python, ruby or java version in a menu:
--h     To print this help screen.'''
+    HELP = '''version [-h] software
+Select software version in a menu:
+-h        To print this help screen.
+software  Software version to choose.'''
     SELECTED = ' *'
 
     def __init__(self, soft):
@@ -98,8 +99,8 @@ Select python, ruby or java version in a menu:
     def run():
         try:
             opts, args = getopt.getopt(sys.argv[1:], 'h', ['help'])
-        except getopt.GetoptError:
-            print('Error parsing command line:')
+        except getopt.GetoptError as e:
+            print('Error parsing command line: %s' % e)
             print(Version.HELP)
             sys.exit(1)
         for o, a in opts:
@@ -107,10 +108,12 @@ Select python, ruby or java version in a menu:
                 print(Version.HELP)
                 sys.exit(0)
             else:
-                print('Unhandled option')
+                print("Error parsing command line: Unhandled option '%s'" % o)
+                print(Version.HELP)
                 sys.exit(2)
         if len(args) != 1:
-            print("You must pass soft on command line")
+            print("Error parsing command line: You must pass software")
+            print(Version.HELP)
             sys.exit(1)
         soft = args[0]
         version = Version(soft)
