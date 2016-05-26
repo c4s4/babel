@@ -29,7 +29,7 @@ archive:
 	changelog to html style > $(BUILD_DIR)/$(NAME)-$(VERSION)/CHANGELOG.html
 	cd $(BUILD_DIR) && tar cvzf $(NAME)-$(VERSION).tar.gz $(NAME)-$(VERSION)/	
 
-release: clean
+release: clean archive
 	@echo "$(YELLOW)Releasing project$(CLEAR)"
 	release
 
