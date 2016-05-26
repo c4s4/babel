@@ -1,5 +1,12 @@
 # Semantic changelog https://github.com/c4s4/changelog
 
+- version: 2.9.1
+  date:    2016-05-26
+  summary: Bug fix release
+  fixed:
+  - "Improved configuration scripts."
+  - "Fixed version command line parsing and help screen."
+
 - version: 2.9.0
   date:    2016-03-30
   summary: python-env renamed python-venv
