@@ -18,6 +18,7 @@ version  The version to build and install.
 Following libraries (debian or fink) might be useful:
 - tetex-nox and latex2html to generate documentation (for 2.6 versions).
 - libreadline-dev to enable completion and line edition in interpreter.
+- tk-dev to enable Tk graphical interface.
 - libssl-dev to enable HTTPS.
 - libzip-dev, libtar-dev, libbz2-dev, zlib1g-dev: to enable ZIP and TAR support.
 - libmysqld-dev, libmysqlclient-dev and python-dev: to install MySQL driver.
