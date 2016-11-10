@@ -1,5 +1,12 @@
 # Semantic changelog https://github.com/c4s4/changelog
 
+- version: 2.9.2
+  date:    2016-11-11
+  summary: Fixed PIP for 3.5.X
+  fixed:
+  - "Fixed PIP for 3.5.X making a link from pip3 to pip."
+  - "Added tk-dev in dependencies list to build with Tk graphical interface."
+
 - version: 2.9.1
   date:    2016-05-26
   summary: Bug fix release
