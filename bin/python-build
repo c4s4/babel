@@ -174,8 +174,18 @@ function install_pip
 
 if [[ $PIP ]]
 then
-    echo "Installing PIP..."
-    sudo $INSTALL_DIR/bin/python -m ensurepip || install_pip
+    if [ ! -f $INSTALL_DIR/bin/pip ] && \
+       [ ! -f $INSTALL_DIR/bin/pip3 ]
+    then
+        echo "Installing PIP..."
+        sudo $INSTALL_DIR/bin/python -m ensurepip || install_pip
+    else
+        if [ ! -f $INSTALL_DIR/bin/pip ]
+        then
+            echo "Making a link to PIP..."
+            sudo ln -s $INSTALL_DIR/bin/pip3 $INSTALL_DIR/bin/pip
+        fi
+    fi
 fi
 
 if [[ $VENV ]]
