@@ -18,6 +18,7 @@ version  The version to build and install.
 Following libraries (debian or fink) might be useful:
 - tetex-nox and latex2html to generate documentation (for 2.6 versions).
 - libreadline-dev to enable completion and line edition in interpreter.
+- tk-dev to enable Tk graphical interface.
 - libssl-dev to enable HTTPS.
 - libzip-dev, libtar-dev, libbz2-dev, zlib1g-dev: to enable ZIP and TAR support.
 - libmysqld-dev, libmysqlclient-dev and python-dev: to install MySQL driver.
@@ -174,8 +175,18 @@ function install_pip
 
 if [[ $PIP ]]
 then
-    echo "Installing PIP..."
-    sudo $INSTALL_DIR/bin/python -m ensurepip || install_pip
+    if [ ! -f $INSTALL_DIR/bin/pip ] && \
+       [ ! -f $INSTALL_DIR/bin/pip3 ]
+    then
+        echo "Installing PIP..."
+        sudo $INSTALL_DIR/bin/python -m ensurepip || install_pip
+    else
+        if [ ! -f $INSTALL_DIR/bin/pip ]
+        then
+            echo "Making a link to PIP..."
+            sudo ln -s $INSTALL_DIR/bin/pip3 $INSTALL_DIR/bin/pip
+        fi
+    fi
 fi
 
 if [[ $VENV ]]
