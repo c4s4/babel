@@ -5,25 +5,21 @@ properties:
 
 extends:
 - c4s4/build/buildir.yml
-- c4s4/build/changelog.yml
+- c4s4/build/release.yml
 
 targets:
 
   install:
     doc: 'Install scripts'
     steps:
-    - 'sudo cp bin/* /opt/bin/'
-    - 'sudo cp etc/* /etc/profile.d/'
+    - '$ sudo cp bin/* /opt/bin/'
+    - '$ sudo cp etc/* /etc/profile.d/'
 
   archive:
     doc: 'Build distribution archive'
     steps:
-    - mkdir: '#{BUILD_DIR}/#{NAME}-#{VERSION}'
-    - copy:  ['bin/*', 'etc/*', 'LICENSE.txt']
-      todir: '#{BUILD_DIR}/#{NAME}-#{VERSION}'
-      flat:  false
-    - 'md2pdf -o "#{BUILD_DIR}/#{NAME}-#{VERSION}/README.pdf" README.md'
-    - 'changelog to html style > "#{BUILD_DIR}/#{NAME}-#{VERSION}/CHANGELOG.html"'
-    - tar:    '#{NAME}-#{VERSION}/**/*'
-      dir:    '#{BUILD_DIR}'
-      tofile: '#{BUILD_DIR}/#{NAME}-#{VERSION}.tar.gz'
+    - mkdir: '#{BUILD_DIR}'
+    - tar:     '**/*'
+      exclude: ['build.yml', '#{BUILD_DIR}/**/*', '.*', '.*/**/*']
+      prefix:  '#{NAME}'
+      tofile:  '#{BUILD_DIR}/#{NAME}-#{VERSION}.tar.gz'
