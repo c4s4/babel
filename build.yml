@@ -10,16 +10,17 @@ extends:
 targets:
 
   install:
-    doc: 'Install scripts'
+    doc: Install scripts
     steps:
-    - '$ sudo cp bin/* /opt/bin/'
-    - '$ sudo cp etc/* /etc/profile.d/'
+    - print: 'Installing Babel scripts'
+    - $: 'sudo cp bin/* /opt/bin/'
+    - $: 'sudo cp etc/* /etc/profile.d/'
 
   archive:
-    doc: 'Build distribution archive'
+    doc: Build distribution archive
     steps:
-    - mkdir: '#{BUILD_DIR}'
+    - mkdir: =BUILD_DIR
     - tar:     '**/*'
-      exclude: ['build.yml', '#{BUILD_DIR}/**/*', '.*', '.*/**/*']
-      prefix:  '#{NAME}'
-      tofile:  '#{BUILD_DIR}/#{NAME}-#{VERSION}.tar.gz'
+      exclude: ['build.yml', '={BUILD_DIR}/**/*', '.*', '.*/**/*']
+      prefix:  =NAME
+      tofile:  '={BUILD_DIR}/={NAME}-={VERSION}.tar.gz'
