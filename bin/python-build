@@ -180,17 +180,27 @@ then
     then
         echo "Installing PIP..."
         sudo $INSTALL_DIR/bin/python -m ensurepip || install_pip
-    else
-        if [ ! -f $INSTALL_DIR/bin/pip ]
-        then
-            echo "Making a link to PIP..."
-            sudo ln -s $INSTALL_DIR/bin/pip3 $INSTALL_DIR/bin/pip
-        fi
+	fi
+	# make a link pip2 -> pip
+    if [ ! -f $INSTALL_DIR/bin/pip ] && \
+       [ -f $INSTALL_DIR/bin/pip3 ]
+    then
+        echo "Making a link to PIP..."
+        sudo ln -s $INSTALL_DIR/bin/pip3 $INSTALL_DIR/bin/pip
     fi
 fi
 
-if [[ $VENV ]]
+if [[ $VENV ]] && \
+   [ ! -f $INSTALL_DIR/bin/pyvenv ]
 then
     echo "Installing Virtualenv..."
     sudo $INSTALL_DIR/bin/pip install virtualenv
+fi
+
+# make a link pyvenv -> virtualenv
+if [ ! -f $INSTALL_DIR/bin/virtualenv ] && \
+   [ -f $INSTALL_DIR/bin/pyvenv ]
+then
+    echo "Making a link to Virtualenv..."
+    sudo ln -s $INSTALL_DIR/bin/pyvenv $INSTALL_DIR/bin/virtualenv
 fi
