@@ -1,5 +1,11 @@
 # Semantic changelog https://github.com/c4s4/changelog
 
+- version: 2.9.3
+  date:    2018-02-02
+  summary: Fixed Python 3 build
+  fixed:
+  - "Fixed Python 3 build for pip and virtualenv (links to pip3 and pyvenv)."
+
 - version: 2.9.2
   date:    2016-11-11
   summary: Fixed PIP for 3.5.X
