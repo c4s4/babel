@@ -1,0 +1,26 @@
+# NeON build file (http://github.com/c4s4/neon)
+
+properties:
+  NAME: babel
+
+extends:
+- c4s4/build/buildir.yml
+- c4s4/build/release.yml
+
+targets:
+
+  install:
+    doc: Install scripts
+    steps:
+    - print: 'Installing Babel scripts'
+    - $: 'sudo cp bin/* /opt/bin/'
+    - $: 'sudo cp etc/* /etc/profile.d/'
+
+  archive:
+    doc: Build distribution archive
+    steps:
+    - mkdir: =BUILD_DIR
+    - tar:     '**/*'
+      exclude: ['build.yml', '={BUILD_DIR}/**/*', '.*', '.*/**/*']
+      prefix:  =NAME
+      tofile:  '={BUILD_DIR}/={NAME}-={VERSION}.tar.gz'
