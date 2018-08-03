@@ -23,12 +23,13 @@ Following libraries (debian or fink) might be useful:
 - libzip-dev, libtar-dev, libbz2-dev, zlib1g-dev: to enable ZIP and TAR support.
 - libmysqld-dev, libmysqlclient-dev and python-dev: to install MySQL driver.
 - libsqlite3-dev: to enable sqlite3 support.
+- libncursesw5-dev: ncurses required by some packages.
 EOF
 }
 
 # install dependencies with apt-get
 dependencies() {
-    sudo apt-get update && sudo apt-get install libreadline-dev libssl-dev libzip-dev libtar-dev libbz2-dev zlib1g-dev libmysqld-dev libmysqlclient-dev python-dev libsqlite3-dev
+    sudo apt-get update && sudo apt-get install libreadline-dev libssl-dev libzip-dev libtar-dev libbz2-dev zlib1g-dev libmysqld-dev libmysqlclient-dev python-dev libsqlite3-dev libncursesw5-dev
 }
 
 # read command line arguments
