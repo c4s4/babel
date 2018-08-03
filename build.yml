@@ -1,8 +1,6 @@
 # NeON build file (http://github.com/c4s4/neon)
 
-properties:
-  NAME: babel
-
+default: [clean, archive, release]
 extends:
 - c4s4/build/buildir.yml
 - c4s4/build/changelog.yml
