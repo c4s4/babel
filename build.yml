@@ -4,6 +4,7 @@ properties:
   NAME: babel
 
 extends:
+- c4s4/build/buildir.yml
 - c4s4/build/changelog.yml
 - c4s4/build/git.yml
 
@@ -15,6 +16,12 @@ targets:
     - print: 'Installing Babel scripts'
     - $: 'sudo cp bin/* /opt/bin/'
     - $: 'sudo cp etc/* /etc/profile.d/'
+
+  release:
+    doc: Perform a release
+    depends: archive
+    steps:
+    - super:
 
   archive:
     doc: Build distribution archive
