@@ -1,5 +1,11 @@
 # Semantic changelog https://github.com/c4s4/changelog
 
+- version: 2.9.4
+  date:    2018-08-03
+  summary: Fixed Python dependency
+  fixed:
+  - "Fixed missing python dependency on libncursesw5-dev."
+
 - version: 2.9.3
   date:    2018-02-02
   summary: Fixed Python 3 build
