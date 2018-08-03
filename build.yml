@@ -4,8 +4,8 @@ properties:
   NAME: babel
 
 extends:
-- c4s4/build/buildir.yml
-- c4s4/build/release.yml
+- c4s4/build/changelog.yml
+- c4s4/build/git.yml
 
 targets:
 
