@@ -9,23 +9,27 @@ languages.
 
 To download, build from sources and install GO *1.4.2*:
 
-    go-build 1.4.2
+```bash
+go-build 1.4.2
+```
 
 To use this GO version, run *version* script that will list all installed
 versions and let you select one:
 
-    $ version go
-    Please choose a version:
-    0: Default
-    1: 1.0.3
-    2: 1.1.2
-    3: 1.2.2 *
-    4: 1.3.3
-    5: 1.4.2
-    5
-    Selecting go version '1.4.2'
-    $ go version
-    go version go1.4.2 linux/amd64
+```bash
+$ version go
+Please choose a version:
+0: Default
+1: 1.0.3
+2: 1.1.2
+3: 1.2.2 *
+4: 1.3.3
+5: 1.4.2
+5
+Selecting go version '1.4.2'
+$ go version
+go version go1.4.2 linux/amd64
+```
 
 This tool is able to build and manage following programming languages:
 

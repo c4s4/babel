@@ -1,11 +1,11 @@
 # NeON build file (http://github.com/c4s4/neon)
 
-properties:
-  NAME: babel
-
+default: [clean, archive, release]
 extends:
+- c4s4/build/buildir.yml
 - c4s4/build/changelog.yml
 - c4s4/build/git.yml
+- c4s4/build/archive.yml
 
 targets:
 
@@ -16,11 +16,8 @@ targets:
     - $: 'sudo cp bin/* /opt/bin/'
     - $: 'sudo cp etc/* /etc/profile.d/'
 
-  archive:
-    doc: Build distribution archive
+  release:
+    doc: Perform a release
+    depends: archive
     steps:
-    - mkdir: =BUILD_DIR
-    - tar:     '**/*'
-      exclude: ['build.yml', '={BUILD_DIR}/**/*', '.*', '.*/**/*']
-      prefix:  =NAME
-      tofile:  '={BUILD_DIR}/={NAME}-={VERSION}.tar.gz'
+    - super:

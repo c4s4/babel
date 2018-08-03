@@ -1,5 +1,9 @@
 # Semantic changelog https://github.com/c4s4/changelog
 
+- version: 2.9.5
+  date:    2018-08-03
+  summary: Fixed build file and README
+
 - version: 2.9.4
   date:    2018-08-03
   summary: Fixed Python dependency
