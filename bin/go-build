@@ -12,9 +12,7 @@ usage: go-build [-h] [-u url] version
 Build and install a given version of GO:
 -h       Print this help page.
 -u url   The URL of the archive to download.
-version  The version to build and install. Current available versions are:
-         1beta1, go1, 1.0.1, 1.0.2, 1.0.3, 1.1, 1.1.1, 1.1.2, 1.2.1, 1.3,
-         1.3.1, 1.3.2, 1.3.3, 1.4.0, 1.4.1 and 1.4.2.
+version  The version to build and install (such as "1.10.4").
 EOF
 }
 
@@ -121,23 +119,14 @@ else
     ARCHIVE_URL=${URL}
 fi
 
+# download, expand archive and move to installation directory
+cd /tmp
 wget ${ARCHIVE_URL}
-
-# expand and move directory to target installation one
 tar xvf ${ARCHIVE_FILE}
 rm ${ARCHIVE_FILE}
-mv go ${VERSION}
-sudo mv ${VERSION} ${INSTALL_DIR}
 
-# build from sources
+# move directory to destination and build from sources
+sudo mv go ${INSTALL_DIR}
 cd ${INSTALL_DIR}/src
 bash all.bash
-
 sudo chown -R root: ${INSTALL_DIR}
-
-# install go tools
-#echo
-#echo "Installing go tools..."
-#export GOROOT=${INSTALL_DIR}
-#sudo -E bash -c "${GOROOT}/bin/go get code.google.com/p/go.tools/cmd/..."
-#echo "done"
