@@ -1,6 +1,6 @@
 # NeON build file (http://github.com/c4s4/neon)
 
-default: [clean, archive, release]
+default: release
 extends:
 - c4s4/build/buildir.yml
 - c4s4/build/changelog.yml
@@ -18,6 +18,6 @@ targets:
 
   release:
     doc: Perform a release
-    depends: archive
+    depends: [clean, archive]
     steps:
     - super:
