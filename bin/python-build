@@ -32,6 +32,8 @@ dependencies() {
     sudo apt-get update && sudo apt-get install libreadline-dev libssl-dev libzip-dev libtar-dev libbz2-dev zlib1g-dev libmysqld-dev libmysqlclient-dev python-dev libsqlite3-dev libncursesw5-dev
 }
 
+TMP_DIR=/tmp
+
 # read command line arguments
 TEST=''
 DOCS=''
@@ -111,6 +113,8 @@ then
 fi
 
 ARCHIVE=Python-$VERSION.tgz
+
+cd $TMP_DIR
 
 echo "Downloading Python Archive..."
 wget https://www.python.org/ftp/python/$VERSION/$ARCHIVE

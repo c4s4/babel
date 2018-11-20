@@ -1,5 +1,9 @@
 # Semantic changelog https://github.com/c4s4/changelog
 
+- version: 2.9.7
+  date:    2018-11-20
+  summary: Build Python in /tmp directory
+
 - version: 2.9.6
   date:    2018-09-14
   summary: Fixed go-build script
