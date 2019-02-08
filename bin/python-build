@@ -15,21 +15,24 @@ Build and install a given version of Python on Linux or MacOSX:
 -v       Don't install Virtualenv.
 version  The version to build and install.
 
-Following libraries (debian or fink) might be useful:
-- tetex-nox and latex2html to generate documentation (for 2.6 versions).
+Following libraries (with debian names) are necessary to build Python:
+- python-dev to get Python source headers
 - libreadline-dev to enable completion and line edition in interpreter.
-- tk-dev to enable Tk graphical interface.
 - libssl-dev to enable HTTPS.
 - libzip-dev, libtar-dev, libbz2-dev, zlib1g-dev: to enable ZIP and TAR support.
-- libmysqld-dev, libmysqlclient-dev and python-dev: to install MySQL driver.
-- libsqlite3-dev: to enable sqlite3 support.
 - libncursesw5-dev: ncurses required by some packages.
+
+Other libraries might be useful:
+- tetex-nox and latex2html to generate documentation (for 2.6 versions).
+- tk-dev to enable Tk graphical interface.
+- libsqlite3-dev: to enable sqlite3 support.
+- libmysqld-dev, libmysqlclient-dev and python-dev: to install MySQL driver.
 EOF
 }
 
 # install dependencies with apt-get
 dependencies() {
-    sudo apt-get update && sudo apt-get install libreadline-dev libssl-dev libzip-dev libtar-dev libbz2-dev zlib1g-dev libmysqld-dev libmysqlclient-dev python-dev libsqlite3-dev libncursesw5-dev
+    sudo apt-get update && sudo apt-get install python-dev libreadline-dev libssl-dev libzip-dev libtar-dev libbz2-dev zlib1g-dev libncursesw5-dev
 }
 
 TMP_DIR=/tmp
