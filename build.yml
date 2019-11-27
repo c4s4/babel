@@ -1,7 +1,7 @@
 # NeON build file (http://github.com/c4s4/neon)
 
 default: release
-extends: [buildir, archive, git, changelog]
+extends: [buildir, archive, git-master]
 
 targets:
 
