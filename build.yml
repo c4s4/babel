@@ -1,7 +1,7 @@
 # NeON build file (http://github.com/c4s4/neon)
 
 default: release
-extends: [buildir, archive, git-master]
+extends: [git-master]
 
 properties:
   SCRIPTS:
@@ -20,7 +20,7 @@ properties:
 targets:
 
   install:
-    doc: Install scripts
+    doc: Install scripts and configurations
     steps:
     - print: 'Installing Babel scripts'
     - if: 'env("APP_DIR") == "/opt"'
@@ -39,9 +39,3 @@ targets:
       in:  =CONFIGS
       do:
       - $: 'cp etc/={config} ~/etc/profile.d/'
-
-  release:
-    doc: Perform a release
-    depends: [clean, archive]
-    steps:
-    - super:
