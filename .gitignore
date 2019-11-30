@@ -1,2 +1,3 @@
-build/
-.ropeproject/
+/build/
+/venv/
+/.vscode/

@@ -1,5 +1,9 @@
 #!/usr/bin/env python
-# Script to create a virtualenv using an existing Python VM
+# pylint: disable=invalid-name
+
+'''
+Script to create a virtualenv using an existing Python VM
+'''
 
 import os
 import re
@@ -9,14 +13,18 @@ import getopt
 
 # fix input in Python 2 and 3
 try:
-    input = raw_input
+    input = raw_input # pylint: disable=redefined-builtin
 except NameError:
     pass
 
 # The soft to install
 SOFT = 'python'
+# set default application directory
+APP_DIR = os.environ.get('APP_DIR')
+if APP_DIR is None:
+    APP_DIR = '/opt'
 # The base for home directories
-SOFT_ROOT = '/opt/%s' % SOFT
+SOFT_ROOT = os.path.join('/', APP_DIR, SOFT)
 # The sorted list of installed versions
 SOFT_PATHS = glob.glob(SOFT_ROOT+'/[0-9].[0-9]*')
 SOFT_PATHS.sort()
@@ -34,22 +42,28 @@ a menu.
 dir     Name of created directory (defaults to 'venv').'''
 
 
-# Get a list of installed versions.
-# Return: an array of versions.
 def get_versions():
+    '''
+    Get a list of installed versions.
+    Return: an array of versions.
+    '''
     return [version[len(SOFT_ROOT)+1:] for version in SOFT_PATHS]
 
 
-# Get the current version.
-# Return: the current version (for instance: '1.2.3').
 def get_current_version():
+    '''
+    Get the current version.
+    Return: the current version (for instance: '1.2.3').
+    '''
     path = os.path.realpath(os.path.join(SOFT_ROOT, 'current'))
     return path[path.rindex(os.path.sep)+1:]
 
 
-# Ask for the version and check it against the list of installed versions.
-# Return: choosen version as an index in the versions table.
 def ask_version():
+    '''
+    Ask for the version and check it against the list of installed versions.
+    Return: choosen version as an index in the versions table.
+    '''
     # print version list
     selected_index = 0
     print('Please choose a version:')
@@ -78,7 +92,7 @@ def ask_version():
         except KeyboardInterrupt:
             print("\nUser abort!")
             sys.exit(0)
-        if re.match('\d+', choice) and int(choice) <= maximum \
+        if re.match('\\d+', choice) and int(choice) <= maximum \
                 and int(choice) >= 0:
             index = int(choice) - 1
             chosen = True
@@ -92,6 +106,9 @@ def ask_version():
 
 
 def virtualenv_path(python_path):
+    '''
+    Return virtualenv path
+    '''
     for executable in VIRTUALENV_COMMANDS:
         path = os.path.join(python_path, 'bin', executable)
         if os.path.exists(path):
@@ -100,6 +117,9 @@ def virtualenv_path(python_path):
 
 
 def main(directory=DEFAULT_DIR):
+    '''
+    Create virtualenv
+    '''
     index = ask_version()
     python_path = SOFT_PATHS[index]
     virtualenv = virtualenv_path(python_path)

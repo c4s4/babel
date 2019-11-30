@@ -1,0 +1,46 @@
+#!/bin/bash
+
+set -e
+
+# help page
+usage() {
+    cat << EOF
+usage: perl-build version
+Build and install a given version of Perl
+EOF
+}
+
+# get version on command line
+if [[ $# != 1 ]]
+then
+    echo "Missing version!"
+    usage
+    exit 1
+else
+    VERSION=$1
+fi
+
+# working directory
+TMP_DIR=/tmp
+
+# set installation directory
+if [[ -z "${APP_DIR}" ]]
+then
+    APP_DIR="/opt"
+fi
+INSTALL_DIR=${APP_DIR}/perl/${VERSION}
+
+# install threaded version of Perl
+cd ${TMP_DIR}
+wget http://www.cpan.org/src/5.0/perl-${VERSION}.tar.gz
+tar -xzf perl-${VERSION}.tar.gz
+cd perl-${VERSION}
+./Configure -des -Dprefix=${INSTALL_DIR} -Dusethreads
+make
+make test
+make install
+cd ${TMP_DIR}
+rm -rf perl-${VERSION}*
+
+# install CPAN Minus
+curl -L http://cpanmin.us | ${INSTALL_DIR}/bin/perl - App::cpanminus

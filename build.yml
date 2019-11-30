@@ -3,14 +3,42 @@
 default: release
 extends: [buildir, archive, git-master]
 
+properties:
+  SCRIPTS:
+  - go-build
+  - perl-build
+  - python-build
+  - python-venv
+  - version
+  CONFIGS:
+  - _app.sh
+  - _opt.sh
+  - golang.sh
+  - perl.sh
+  - python.sh
+
 targets:
 
   install:
     doc: Install scripts
     steps:
     - print: 'Installing Babel scripts'
-    - $: 'sudo cp bin/* /opt/bin/'
-    - $: 'sudo cp etc/* /etc/profile.d/'
+    - if: 'env("APP_DIR") == "/opt"'
+      then:
+      - for: script
+        in:  =SCRIPTS
+        do:
+        - $: 'sudo cp bin/={script} /opt/bin/'
+      else:
+      - for: script
+        in:  =SCRIPTS
+        do:
+        - $: 'cp bin/={script} ~/app/bin/'
+    - print: 'Installing Babel configs'
+    - for: config
+      in:  =CONFIGS
+      do:
+      - $: 'cp etc/={config} ~/etc/profile.d/'
 
   release:
     doc: Perform a release

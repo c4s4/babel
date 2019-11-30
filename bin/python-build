@@ -106,7 +106,18 @@ else
   fi
 fi
 
-INSTALL_DIR=/opt/python/$VERSION
+if [[ -z "${APP_DIR}" ]]
+then
+    APP_DIR="/opt"
+fi
+INSTALL_DIR=${APP_DIR}/python/${VERSION}
+
+if [ -w "${APP_DIR}" ]
+then
+    SUDO=''
+else
+    SUDO='sudo'
+fi
 
 # check that target install directory doesn't already exists
 if [ -d $INSTALL_DIR ]
@@ -152,10 +163,10 @@ then
 fi
 
 echo "Installing Python..."
-sudo make install
+$SUDO make install
 if [[ $DOCS ]]
 then
-    sudo cp -r Doc/$BUILD_DOC $INSTALL_DIR/doc
+    $SUDO cp -r Doc/$BUILD_DOC $INSTALL_DIR/doc
 fi
 
 # make a link from python3 to python executable
@@ -163,21 +174,21 @@ if [ $MAJOR -gt 2 ];
 then
   if [ -f $INSTALL_DIR/bin/python$MAJOR ]
   then
-    sudo ln -sf $INSTALL_DIR/bin/python$MAJOR $INSTALL_DIR/bin/python 
+    $SUDO ln -sf $INSTALL_DIR/bin/python$MAJOR $INSTALL_DIR/bin/python
   else
-    sudo ln -sf $INSTALL_DIR/bin/python$MAJOR.$MINOR $INSTALL_DIR/bin/python
+    $SUDO ln -sf $INSTALL_DIR/bin/python$MAJOR.$MINOR $INSTALL_DIR/bin/python
   fi
 fi
 
 echo "Cleaning archive..."
 cd ..
-sudo rm -rf Python-$VERSION
+$SUDO rm -rf Python-$VERSION
 rm $ARCHIVE
 
 function install_pip
 {
     wget https://bootstrap.pypa.io/get-pip.py
-    sudo $INSTALL_DIR/bin/python get-pip.py
+    $SUDO $INSTALL_DIR/bin/python get-pip.py
     rm get-pip.py
 }
 
@@ -187,14 +198,14 @@ then
        [ ! -f $INSTALL_DIR/bin/pip3 ]
     then
         echo "Installing PIP..."
-        sudo $INSTALL_DIR/bin/python -m ensurepip || install_pip
+        $SUDO $INSTALL_DIR/bin/python -m ensurepip || install_pip
 	fi
 	# make a link pip2 -> pip
     if [ ! -f $INSTALL_DIR/bin/pip ] && \
        [ -f $INSTALL_DIR/bin/pip3 ]
     then
         echo "Making a link to PIP..."
-        sudo ln -s $INSTALL_DIR/bin/pip3 $INSTALL_DIR/bin/pip
+        $SUDO ln -s $INSTALL_DIR/bin/pip3 $INSTALL_DIR/bin/pip
     fi
 fi
 
@@ -202,7 +213,7 @@ if [[ $VENV ]] && \
    [ ! -f $INSTALL_DIR/bin/pyvenv ]
 then
     echo "Installing Virtualenv..."
-    sudo $INSTALL_DIR/bin/pip install virtualenv
+    $SUDO $INSTALL_DIR/bin/pip install virtualenv
 fi
 
 # make a link pyvenv -> virtualenv
@@ -210,5 +221,5 @@ if [ ! -f $INSTALL_DIR/bin/virtualenv ] && \
    [ -f $INSTALL_DIR/bin/pyvenv ]
 then
     echo "Making a link to Virtualenv..."
-    sudo ln -s $INSTALL_DIR/bin/pyvenv $INSTALL_DIR/bin/virtualenv
+    $SUDO ln -s $INSTALL_DIR/bin/pyvenv $INSTALL_DIR/bin/virtualenv
 fi

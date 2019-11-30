@@ -1,4 +1,4 @@
 #!/bin/sh
-# /etc/profile.d/lua.sh
+# ~/.profile.d/lua.sh
 
-export PATH=/opt/lua/current/bin:${PATH}
+export PATH=${APP_DIR}/lua/current/bin:${PATH}

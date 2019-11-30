@@ -1,5 +1,5 @@
 #!/bin/sh
-# /etc/profile.d/ruby.sh
+# ~/.profile.d/ruby.sh
 
-export PATH=/opt/ruby/current/bin:${PATH}
+export PATH=${APP_DIR}/ruby/current/bin:${PATH}
 export RUBYOPT=rubygems

@@ -1,5 +1,5 @@
 #!/bin/sh
-# /etc/profile.d/java.sh
+# ~/.profile.d/java.sh
 
-export PATH=/opt/java/current/bin:${PATH}
-export JAVA_HOME=/opt/java/current
+export PATH=${APP_DIR}/java/current/bin:${PATH}
+export JAVA_HOME=${APP_DIR}/java/current

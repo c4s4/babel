@@ -2,9 +2,6 @@
 
 set -e
 
-# path to a GO installation (1.4 of more) needed to build GO 1.5 and up
-export GOROOT_BOOTSTRAP=/opt/go/current
-
 # help page
 usage() {
     cat << EOF
@@ -95,7 +92,11 @@ else
 fi
 
 # check that install directory doesn't exist
-INSTALL_DIR=/opt/go/${VERSION}
+if [[ -z "${APP_DIR}" ]]
+then
+    APP_DIR="/opt"
+fi
+INSTALL_DIR=${APP_DIR}/go/${VERSION}
 
 if [ -d ${INSTALL_DIR} ]
 then
@@ -126,7 +127,14 @@ tar xvf ${ARCHIVE_FILE}
 rm ${ARCHIVE_FILE}
 
 # move directory to destination and build from sources
-sudo mv go ${INSTALL_DIR}
-cd ${INSTALL_DIR}/src
-bash all.bash
-sudo chown -R root: ${INSTALL_DIR}
+if [ -w "${APP_DIR}" ]
+then
+    mv go ${INSTALL_DIR}
+    cd ${INSTALL_DIR}/src
+    bash all.bash
+else
+    sudo mv go ${INSTALL_DIR}
+    cd ${INSTALL_DIR}/src
+    bash all.bash
+    sudo chown -R root: ${INSTALL_DIR}
+fi
