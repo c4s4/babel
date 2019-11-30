@@ -1,5 +1,4 @@
-Babel
-=====
+# Babel
 
 - Project: <https://github.com/c4s4/babel>.
 - Download: <https://github.com/c4s4/babel/releases>.
@@ -40,23 +39,21 @@ This tool is able to build and manage following programming languages:
 - Lua
 - Rust
 
-How it works
-------------
+## How it works
 
-Build scripts builds and install VMs or compiler in directory 
+Build scripts builds and install VMs or compiler in directory
 */opt/&lt;lang>/&lt;version>*. Thus GO *1.4.2* would be installed in directory
 */opt/go/1.4.2*.
 
 Script *version* selects a given version by making a symbolic link between
 */opt/&lt;lang>/&lt;version>* and */opt/&lt;lang>/current*.
 
-Thus, if you put directory */opt/&lt;lang>/current/bin* in your *PATH*, you 
+Thus, if you put directory */opt/&lt;lang>/current/bin* in your *PATH*, you
 would run selected version.
 
 This system is straightforward and works fine.
 
-Installation
-------------
+## Installation
 
 To install Babel:
 
@@ -70,8 +67,7 @@ To install Babel:
 Build your VMs with scripts *&lt;lang>-build version* (except for Java that you
 install already built in appropriate directory */opt/java/&lt;version>*).
 
-Languages
----------
+## Languages
 
 ### GO
 
@@ -129,5 +125,10 @@ You must set following environment variables:
 
 - *rust-build* script will build Rust from sources (which is *very* long).
 - *version rust* script will switch between installed versions.
+
+### Perl
+
+- *perl-build* script will build Perl from sources (which is *very* long).
+- *version perl* script will switch between installed versions.
 
 *Enjoy!*
