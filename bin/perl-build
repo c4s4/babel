@@ -38,7 +38,14 @@ cd perl-${VERSION}
 ./Configure -des -Dprefix=${INSTALL_DIR} -Dusethreads
 make
 make test
-make install
+
+if [ -w "${APP_DIR}" ]
+then
+    SUDO=''
+else
+    SUDO='sudo'
+fi
+${SUDO} make install
 cd ${TMP_DIR}
 rm -rf perl-${VERSION}*
 
