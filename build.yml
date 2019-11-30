@@ -5,11 +5,11 @@ extends: [git-master]
 
 properties:
   SCRIPTS:
+  - version
   - go-build
   - perl-build
   - python-build
   - python-venv
-  - version
   CONFIGS:
   - _app.sh
   - _opt.sh
@@ -23,17 +23,10 @@ targets:
     doc: Install scripts and configurations
     steps:
     - print: 'Installing Babel scripts'
-    - if: 'env("APP_DIR") == "/opt"'
-      then:
-      - for: script
-        in:  =SCRIPTS
-        do:
-        - $: 'sudo cp bin/={script} /opt/bin/'
-      else:
-      - for: script
-        in:  =SCRIPTS
-        do:
-        - $: 'cp bin/={script} ~/app/bin/'
+    - for: script
+      in:  =SCRIPTS
+      do:
+      - $: 'cp bin/={script} ~/bin/'
     - print: 'Installing Babel configs'
     - for: config
       in:  =CONFIGS
