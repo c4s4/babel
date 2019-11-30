@@ -27,12 +27,12 @@ To use this GO version, run *version* script that will list all installed versio
 This tool is able to build and manage following programming languages:
 
 - Go
-- Python
-- Ruby
 - Java
-- Lua
-- Rust
 - Perl
+- Python
+- Lua
+- Ruby
+- Rust
 
 ## How it works
 
@@ -103,15 +103,15 @@ To build Python VM, you must install following development libraries:
 - *libmysqld-dev*, *libmysqlclient-dev* and *python-dev* to install MySQL driver.
 - *libsqlite3-dev* to enable sqlite3 support.
 
-### Ruby
-
-- *ruby-build* script will build the VM for the given version.
-- *version ruby* script will switch between installed versions.
-
 ### Lua
 
 - *lua-build* script will build the VM for the given version.
 - *version lua* script will switch between installed versions.
+
+### Ruby
+
+- *ruby-build* script will build the VM for the given version.
+- *version ruby* script will switch between installed versions.
 
 ### Rust
 
