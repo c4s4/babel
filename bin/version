@@ -54,14 +54,14 @@ software  Software version to choose.'''
         sudo = 'sudo ' if self.sudo else ''
         old_dir = "current"
         if index == -1:
-            print("Selecting system %s version" % self.soft)
-            if os.path.exists(old_dir):
+            print("Selecting system version")
+            if os.path.exists(os.path.join(self.soft_root, old_dir)):
                 os.system("cd %s && %srm %s" % (self.soft_root, sudo, old_dir))
         else:
             print("Selecting %s version '%s'" %
                   (self.soft, self.versions[index]))
             directory = self.versions[index]
-            if os.path.exists(old_dir):
+            if os.path.exists(os.path.join(self.soft_root, old_dir)):
                 os.system("cd %s && %srm %s" % (self.soft_root, sudo, old_dir))
             os.system("cd %s && %sln -s %s %s" % (self.soft_root, sudo, directory, old_dir))
 
