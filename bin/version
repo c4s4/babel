@@ -41,8 +41,8 @@ software  Software version to choose.'''
         self.sudo = True
         if os.access(self.app_dir, os.W_OK):
             self.sudo = False
-        self.soft_root = os.path.join('/', self.app_dir, self.soft)
-        self.soft_paths = sorted(glob.glob(self.soft_root+'/[0-9].[0-9]*'))
+        self.soft_root = os.path.join(self.app_dir, self.soft)
+        self.soft_paths = sorted(glob.glob(self.soft_root+'/[0-9]*'))
         self.versions = [v[len(self.soft_root)+1:] for v in self.soft_paths]
         path = os.path.realpath("%s/current" % self.soft_root)
         self.current_version = path[path.rindex(os.path.sep)+1:]
@@ -52,18 +52,18 @@ software  Software version to choose.'''
         Set software version by index
         '''
         sudo = 'sudo ' if self.sudo else ''
-        old_dir = "%s/current" % self.soft_root
+        old_dir = "current"
         if index == -1:
             print("Selecting system %s version" % self.soft)
             if os.path.exists(old_dir):
-                os.system("%srm %s" % (sudo, old_dir))
+                os.system("cd %s && %srm %s" % (self.soft_root, sudo, old_dir))
         else:
             print("Selecting %s version '%s'" %
                   (self.soft, self.versions[index]))
-            directory = self.soft_paths[index]
+            directory = self.versions[index]
             if os.path.exists(old_dir):
-                os.system("%srm %s" % (sudo, old_dir))
-            os.system("%sln -sf %s %s" % (sudo, directory, old_dir))
+                os.system("cd %s && %srm %s" % (self.soft_root, sudo, old_dir))
+            os.system("cd %s && %sln -s %s %s" % (self.soft_root, sudo, directory, old_dir))
 
     def ask_version(self):
         '''
