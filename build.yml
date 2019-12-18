@@ -10,6 +10,7 @@ properties:
   - version
   - go-build
   - perl-build
+  - psql-build
   - python-build
   - python-venv
   CONFIGS:
@@ -18,6 +19,7 @@ properties:
   - golang.sh
   - java.sh
   - perl.sh
+  - psql.sh
   - python.sh
 
 targets:
