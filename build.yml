@@ -24,10 +24,9 @@ targets:
 
   release:
     doc: Perform release
-    depends: [clean, last-tags, version, release-title, change-list]
+    depends: [last-tags, version, release-title, change-list]
     steps:
     - super:
-    - call: upload
 
   install:
     doc: Install scripts and configurations
