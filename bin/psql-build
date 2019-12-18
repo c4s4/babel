@@ -1,0 +1,46 @@
+#!/bin/sh
+# Script to build and install software
+
+set -e
+
+NAME="psql"
+TMPDIR=/tmp
+USAGE="Usage: ${NAME}-build version"
+
+VERSION=$1
+
+if [ "${VERSION}" = -h ]; then
+    echo ${USAGE}
+    exit 0
+fi
+if [ "${VERSION}" = "" ]; then
+    echo "You must pass version to build on command line"
+    echo ${USAGE}
+    exit 1
+fi
+if [ -d "${APP_DIR}/${NAME}/${VERSION}" ]; then
+    echo "Destination directory "${APP_DIR}/${NAME}/${VERSION}" already exists"
+    exit 1
+fi
+
+ARCHIVE="postgresql-${VERSION}.tar.gz"
+URL="https://ftp.postgresql.org/pub/source/v${VERSION}/${ARCHIVE}"
+
+cd ${TMPDIR}
+wget ${URL}
+
+tar zxvf ${ARCHIVE}
+cd "postgresql-${VERSION}"
+
+./configure --prefix=${APP_DIR}/${NAME}/${VERSION}
+make
+if [ "${APP_DIR}" = "${HOME}/app" ]
+then
+    make install
+else
+    sudo make install
+fi
+
+cd ..
+rm ${ARCHIVE}
+rm -rf "postgresql-${VERSION}"
