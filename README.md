@@ -3,7 +3,7 @@
 - Project: <https://github.com/c4s4/babel>.
 - Download: <https://github.com/c4s4/babel/releases>.
 
-Babel is a set of tools to manage versions of your favorite programming languages.
+Babel is a set of tools to manage versions of your favorite programming languages and tools.
 
 To download, build from sources and install GO *1.4.2*:
 
@@ -24,11 +24,12 @@ To use this GO version, run *version* script that will list all installed versio
     $ go version
     go version go1.4.2 linux/amd64
 
-This tool is able to build and manage following programming languages:
+This tool is able to build and manage following programming languages and tools:
 
 - Go
 - Java
 - Perl
+- PostgreSQL
 - Python
 - Lua
 - Ruby
@@ -87,6 +88,11 @@ You must set following environment variables:
 
 - *perl-build* script will build Perl from sources (which is *very* long).
 - *version perl* script will switch between installed versions.
+
+### PostgreSQL
+
+- *psql-build* script will build PostgreSQL from sources.
+- *version psql* script will switch between installed versions.
 
 ### Python
 
