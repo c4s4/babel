@@ -1,7 +1,9 @@
 # NeON build file (http://github.com/c4s4/neon)
 
+extends: [_git_master, _github]
 default: release
-extends: [_git_master]
+configuration: '~/.neon/github.yml'
+# GITHUB_TOKEN: 'abcdefghijklmnopqrstuvwxyz0123456789'
 
 properties:
   SCRIPTS:
@@ -19,6 +21,13 @@ properties:
   - python.sh
 
 targets:
+
+  release:
+    doc: Perform release
+    depends: [clean, last-tags, version, release-title, change-list]
+    steps:
+    - super:
+    - call: upload
 
   install:
     doc: Install scripts and configurations
