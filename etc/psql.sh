@@ -1,5 +1,5 @@
 #!/bin/sh
-# ~/.profile.d/psql.sh
+# /etc/profile.d/psql.sh
 
 export PATH=${APP_DIR}/psql/current/bin:${PATH}
 

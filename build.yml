@@ -14,8 +14,8 @@ properties:
   - python-build
   - python-venv
   CONFIGS:
-  - _app.sh
-  - _opt.sh
+  - app-dir-app.sh
+  - app-dir-opt.sh
   - golang.sh
   - java.sh
   - perl.sh
