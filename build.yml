@@ -1,24 +1,34 @@
 # NeON build file (http://github.com/c4s4/neon)
 
+extends: [_git_master, _github]
 default: release
-extends: [_git_master]
+configuration: '~/.neon/github.yml'
+# GITHUB_TOKEN: 'abcdefghijklmnopqrstuvwxyz0123456789'
 
 properties:
   SCRIPTS:
   - version
   - go-build
   - perl-build
+  - psql-build
   - python-build
   - python-venv
   CONFIGS:
-  - _app.sh
-  - _opt.sh
+  - app-dir-app.sh
+  - app-dir-opt.sh
   - golang.sh
   - java.sh
   - perl.sh
+  - psql.sh
   - python.sh
 
 targets:
+
+  release:
+    doc: Perform release
+    depends: [last-tags, version, release-title, change-list]
+    steps:
+    - super:
 
   install:
     doc: Install scripts and configurations
