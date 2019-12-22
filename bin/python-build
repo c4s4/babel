@@ -21,6 +21,7 @@ Following libraries (with debian names) are necessary to build Python:
 - libssl-dev to enable HTTPS.
 - libzip-dev, libtar-dev, libbz2-dev, zlib1g-dev: to enable ZIP and TAR support.
 - libncursesw5-dev: ncurses required by some packages.
+- libffi-dev
 
 Other libraries might be useful:
 - tetex-nox and latex2html to generate documentation (for 2.6 versions).
@@ -32,7 +33,7 @@ EOF
 
 # install dependencies with apt-get
 dependencies() {
-    sudo apt-get update && sudo apt-get install python-dev libreadline-dev libssl-dev libzip-dev libtar-dev libbz2-dev zlib1g-dev libncursesw5-dev
+    sudo apt-get update && sudo apt-get install python-dev libreadline-dev libssl-dev libzip-dev libtar-dev libbz2-dev zlib1g-dev libncursesw5-dev libffi-dev
 }
 
 TMP_DIR=/tmp
