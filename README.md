@@ -34,6 +34,7 @@ This tool is able to build and manage following programming languages and tools:
 - Lua
 - Ruby
 - Rust
+- VScodium
 
 ## How it works
 
@@ -123,5 +124,10 @@ To build Python VM, you must install following development libraries:
 
 - *rust-build* script will build Rust from sources (which is *very* long).
 - *version rust* script will switch between installed versions.
+
+### VScodium
+
+- *vscodium-build* script will download and install VScodium, then remove old versions to keep last two releases.
+- *version vscodium* script will switch between installed versions.
 
 *Enjoy!*

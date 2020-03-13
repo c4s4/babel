@@ -13,6 +13,7 @@ properties:
   - psql-build
   - python-build
   - python-venv
+  - vscodium-build
   CONFIGS:
   - app-dir-app.sh
   - app-dir-opt.sh
@@ -21,6 +22,7 @@ properties:
   - perl.sh
   - psql.sh
   - python.sh
+  - vscodium.sh
 
 targets:
 
