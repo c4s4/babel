@@ -35,15 +35,15 @@ else
 fi
 
 # delete older version if more than two
-if [[ $(ls $VSC_DIR | grep vscodium | wc -l) -gt 2 ]];
-then
-    OLDER=${VSC_DIR}/$(ls ${VSC_DIR} | grep vscodium | sort | head -n 1)
+while [ $(ls $VSC_DIR | wc -l) -gt 3 ];
+do
+    OLDER=${VSC_DIR}/$(ls ${VSC_DIR} | sort -V | head -n 1)
     if [ -w "${VSC_DIR}" ]
     then
         rm -rf $OLDER
     else
         sudo rm -rf $OLDER
     fi
-fi
+done
 
 echo "done"
