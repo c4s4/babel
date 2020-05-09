@@ -127,7 +127,7 @@ To build Python VM, you must install following development libraries:
 
 ### VScodium
 
-- *vscodium-build* script will download and install VScodium, then remove old versions to keep last two releases.
+- *vscodium-build* script will download and install VScodium, then remove old versions to keep last two releases. If no version is passed on command line, latest released version will be installed.
 - *version vscodium* script will switch between installed versions.
 
 *Enjoy!*
