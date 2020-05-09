@@ -6,12 +6,19 @@ set -e
 
 TMP_DIR=/tmp
 VSC_DIR=${APP_DIR}/vscodium
+VSC_REPO=git@github.com:VSCodium/vscodium.git
 
 # test if version was passed on command line
 VERSION=$1
 if [[ $VERSION == "" ]];
 then
-    echo "You must pass version to install on command line"
+    VERSION=$(git ls-remote --tags ${VSC_REPO} | sort -V | tail -n1 | sed -En '1!q;s/^[[:xdigit:]]+[[:space:]]+refs\/tags\/(.+)/\1/gp')
+fi
+
+# test if version already installed
+if [ -d ${VSC_DIR}/${VERSION} ];
+then
+    echo "Version ${VERSION} already installed"
     exit 1
 fi
 
