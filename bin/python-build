@@ -208,6 +208,8 @@ then
         echo "Making a link to PIP..."
         $SUDO ln -s $INSTALL_DIR/bin/pip3 $INSTALL_DIR/bin/pip
     fi
+	# upgrade pip
+	$SUDO $INSTALL_DIR/bin/pip install --upgrade pip
 fi
 
 if [[ $VENV ]] && \
