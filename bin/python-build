@@ -33,7 +33,7 @@ EOF
 
 # install dependencies with apt-get
 dependencies() {
-    sudo apt-get update && sudo apt-get install python-dev libreadline-dev libssl-dev libzip-dev libtar-dev libbz2-dev zlib1g-dev libncursesw5-dev libffi-dev
+    sudo apt-get update && sudo apt-get install build-essential python-dev libreadline-dev libssl-dev libzip-dev libtar-dev libbz2-dev zlib1g-dev libncursesw5-dev libffi-dev
 }
 
 TMP_DIR=/tmp
