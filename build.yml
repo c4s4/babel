@@ -34,9 +34,9 @@ targets:
     - for: script
       in:  =SCRIPTS
       do:
-      - $: 'cp bin/={script} ~/bin/'
+      - $: 'sudo cp bin/={script} /opt/bin/'
     - print: 'Installing Babel configs'
     - for: config
       in:  =CONFIGS
       do:
-      - $: 'cp etc/={config} ~/etc/profile.d/'
+      - $: 'sudo cp etc/={config} /etc/profile.d/'
