@@ -9,18 +9,13 @@ properties:
   SCRIPTS:
   - version
   - go-build
-  - perl-build
-  - psql-build
   - python-build
   - python-venv
   - vscodium-build
   CONFIGS:
-  - app-dir-app.sh
-  - app-dir-opt.sh
+  - app-dir.sh
   - golang.sh
   - java.sh
-  - perl.sh
-  - psql.sh
   - python.sh
   - vscodium.sh
 
