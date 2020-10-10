@@ -7,27 +7,28 @@ usage() {
     cat << EOF
 usage: build-python [-h] [-t] [-d] [-p] version
 Build and install a given version of Python on Linux or MacOSX:
--h       Print this help page.
--a       Install dependencies with apt-get.
--t       Run tests (that might take time on some platforms).
--d       Build documentation (installed in doc directory).
--p       Don't install PIP (and easy_install).
--v       Don't install Virtualenv.
-version  The version to build and install.
+-h       Print this help page
+-a       Install dependencies with apt-get
+-l dir   Install in given directory
+-t       Run tests (that might take time on some platforms)
+-d       Build documentation (installed in doc directory)
+-p       Don't install PIP (and easy_install)
+-v       Don't install Virtualenv
+version  The version to build and install
 
 Following libraries (with debian names) are necessary to build Python:
 - python-dev to get Python source headers
-- libreadline-dev to enable completion and line edition in interpreter.
-- libssl-dev to enable HTTPS.
-- libzip-dev, libtar-dev, libbz2-dev, zlib1g-dev: to enable ZIP and TAR support.
-- libncursesw5-dev: ncurses required by some packages.
-- libffi-dev: required by some packages to avoid error "No module named '_ctypes'"".
+- libreadline-dev to enable completion and line edition in interpreter
+- libssl-dev to enable HTTPS
+- libzip-dev, libtar-dev, libbz2-dev, zlib1g-dev: to enable ZIP and TAR support
+- libncursesw5-dev: ncurses required by some packages
+- libffi-dev: required by some packages to avoid error "No module named '_ctypes'""
 
 Other libraries might be useful:
-- tetex-nox and latex2html to generate documentation (for 2.6 versions).
-- tk-dev to enable Tk graphical interface.
-- libsqlite3-dev: to enable sqlite3 support.
-- libmysqld-dev, libmysqlclient-dev and python-dev: to install MySQL driver.
+- tetex-nox and latex2html to generate documentation (for 2.6 versions)
+- tk-dev to enable Tk graphical interface
+- libsqlite3-dev: to enable sqlite3 support
+- libmysqld-dev, libmysqlclient-dev and python-dev: to install MySQL driver
 EOF
 }
 
@@ -39,11 +40,12 @@ dependencies() {
 TMP_DIR=/tmp
 
 # read command line arguments
+DEST=''
 TEST=''
 DOCS=''
 PIP=1
 VENV=1
-while getopts “hatdp” OPTION
+while getopts “hal:tdp” OPTION
 do
     case $OPTION in
         h)
@@ -53,6 +55,9 @@ do
         a)
             dependencies
             exit
+            ;;
+        l)
+            DEST=${OPTARG}
             ;;
         t)
             TEST=1
@@ -112,6 +117,11 @@ then
     APP_DIR="/opt"
 fi
 INSTALL_DIR=${APP_DIR}/python/${VERSION}
+
+if [[ -n "${DEST}" ]]
+then
+    INSTALL_DIR=${DEST}
+fi
 
 if [ -w "${APP_DIR}" ]
 then
