@@ -29,7 +29,7 @@ cd ${TMPDIR}
 wget ${URL}
 
 tar zxvf ${ARCHIVE}
-cd "rustc-${VERSION}"
+cd "rustc-${VERSION}-src"
 
 ./configure --prefix=/opt/rust/${VERSION}
 make
