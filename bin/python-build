@@ -147,10 +147,13 @@ wget https://www.python.org/ftp/python/$VERSION/$ARCHIVE
 echo "Building Python..."
 tar zxf $ARCHIVE
 cd Python-$VERSION
+
+CONFIGURE_OPTIONS=""
 # compilation flags on MacOSX
 if [ "`uname`" = "Darwin" ]; then
     export LDFLAGS=-L/opt/local/lib
     export CPPFLAGS=-I/opt/local/include
+	CONFIGURE_OPTIONS="--with-openssl=$(brew --prefix openssl)"
 fi
 # compilation flags on Linux 11.10 (arch libs)
 if [ "`uname`" = "Linux" ]; then
@@ -160,7 +163,7 @@ if [ "`uname`" = "Linux" ]; then
     export CPPFLAGS="-I/usr/include/$arch"
 fi
 
-./configure --prefix=$INSTALL_DIR
+./configure --prefix=$INSTALL_DIR $CONFIGURE_OPTIONS
 make
 if [[ $TEST ]]
 then
