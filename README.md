@@ -82,7 +82,7 @@ Even if tests fail (which is the case for release *1.1* for instance), the compi
 
 You must set following environment variables:
 
-- *PATH*: must include */opt/go/current/bin*.
+- *PATH*: must include */opt/java/current/bin*.
 - *JAVA_HOME*: must be */opt/java/current*.
 
 ### Perl
