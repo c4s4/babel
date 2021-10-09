@@ -15,5 +15,5 @@ install: # Install scripts and configuration
 	done
 	@echo "Installing configurations"
 	@for file in $(CONFIGS); do \
-		cp etc/$$file /etc.profile.d/; \
+		cp etc/$$file /etc/profile.d/; \
 	done
