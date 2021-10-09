@@ -37,8 +37,12 @@ rm $ARCHIVE
 if [ -w "${VSC_DIR}" ]
 then
     mv vscodium-${VERSION} ${VSC_DIR}/${VERSION}
+    sudo chown -R root: ${VSC_DIR}/${VERSION}/chrome-sandbox
+    sudo chmod 4755 ${VSC_DIR}/${VERSION}/chrome-sandbox
 else
     sudo mv vscodium-${VERSION} ${VSC_DIR}/${VERSION}
+    sudo chown -R root: ${VSC_DIR}/${VERSION}
+    sudo chmod 4755 ${VSC_DIR}/${VERSION}/chrome-sandbox
 fi
 
 # delete older version if more than two
