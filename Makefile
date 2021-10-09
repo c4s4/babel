@@ -1,6 +1,6 @@
 # Parent Makefiles https://github.com/c4s4/make
 
-include ~/.make/Basics.mk
+include ~/.make/basics.mk
 
 SCRIPTS = "version go-build python-build python-venv vscodium-build"
 CONFIGS = "app-dir.sh golang.sh java.sh python.sh vscodium.sh"
