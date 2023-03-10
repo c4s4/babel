@@ -29,6 +29,13 @@ Other libraries might be useful:
 - tk-dev to enable Tk graphical interface
 - libsqlite3-dev: to enable sqlite3 support
 - libmysqld-dev, libmysqlclient-dev and python-dev: to install MySQL driver
+
+On MacOS, you should install following Brew packages:
+- openssl to enable HTTPS
+- readline to enable completion and line edition in interpreter
+- libzip, libtar to enable ZIP and TAR support
+- ncurses required by some packages
+- libffi required by some packages to avoid error "No module named '_ctypes'""
 EOF
 }
 
