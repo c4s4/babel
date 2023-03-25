@@ -41,7 +41,12 @@ EOF
 
 # install dependencies with apt-get
 dependencies() {
-    sudo apt-get update && sudo apt-get install build-essential python-dev libreadline-dev libssl-dev libzip-dev libtar-dev libbz2-dev zlib1g-dev libncursesw5-dev libffi-dev
+    if [ `uname` = "Darwin" ]
+    then
+        brew install openssl readline libzip libtar ncurses libffi
+    else
+        sudo apt-get update && sudo apt-get install build-essential python-dev libreadline-dev libssl-dev libzip-dev libtar-dev libbz2-dev zlib1g-dev libncursesw5-dev libffi-dev
+    fi
 }
 
 TMP_DIR=/tmp
