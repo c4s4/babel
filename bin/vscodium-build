@@ -22,9 +22,18 @@ then
     exit 1
 fi
 
+# get architecture
+arch=`uname -m`
+
+if [ "$arch" = "x86_64" ]; then
+    ARCH="x64"
+elif [ "$arch" = "aarch64" ]; then
+    ARCH="arm64"
+fi
+
 # download archive
 ARCHIVE=vscodium-${VERSION}.tar.gz
-DOWNLOAD_URL="https://github.com/VSCodium/vscodium/releases/download/${VERSION}/VSCodium-linux-x64-${VERSION}.tar.gz"
+DOWNLOAD_URL="https://github.com/VSCodium/vscodium/releases/download/${VERSION}/VSCodium-linux-${ARCH}-${VERSION}.tar.gz"
 wget -O "${TMP_DIR}/${ARCHIVE}" "${DOWNLOAD_URL}"
 
 # untar archive
