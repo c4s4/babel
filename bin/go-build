@@ -5,71 +5,23 @@ set -e
 # help page
 usage() {
     cat << EOF
-usage: go-build [-h] [-u url] version
+usage: go-build [-h] version
 Build and install a given version of GO:
 -h       Print this help page.
--u url   The URL of the archive to download.
 version  The version to build and install (such as "1.10.4").
 EOF
 }
 
-# Compare two version numbers $1 and $2
-# Return 0 if equal, -1 if $1 < $2 and 1 if $1 > $2.
-vercomp () {
-    if [[ $1 == *"rc"* || $1 == *"beta"* ]]
-    then
-        echo "O"
-        return
-    fi
-    if [[ $1 == $2 ]]
-    then
-        echo "0"
-        return
-    fi
-    local IFS=.
-    local i ver1=($1) ver2=($2)
-    # fill empty fields in ver1 with zeros
-    for ((i=${#ver1[@]}; i<${#ver2[@]}; i++))
-    do
-        ver1[i]=0
-    done
-    for ((i=0; i<${#ver1[@]}; i++))
-    do
-        if [[ -z ${ver2[i]} ]]
-        then
-            # fill empty fields in ver2 with zeros
-            ver2[i]=0
-        fi
-        if ((10#${ver1[i]} > 10#${ver2[i]}))
-        then
-            echo "1"
-            return
-        fi
-        if ((10#${ver1[i]} < 10#${ver2[i]}))
-        then
-            echo "-1"
-            return
-        fi
-    done
-    echo "0"
-    return
-}
-
 # URL to download the archive
-URL=
-ARCHIVE_ROOT=https://storage.googleapis.com/golang
-OLD_ROOT=https://go.googlecode.com/files
+ARCHIVE_ROOT=https://go.dev/dl/
 
 # read command line arguments
-while getopts “hu:” OPTION
+while getopts “h:” OPTION
 do
      case ${OPTION} in
          h)
              usage
              exit
-             ;;
-         u)
-             URL=${OPTARG}
              ;;
          ?)
              usage
@@ -104,21 +56,9 @@ then
     exit 1
 fi
 
-# change download URL for GO 1.1 and earlier
-if (( `vercomp ${VERSION} 1.2.2` < 0 ))
-then
-    ARCHIVE_ROOT=${OLD_ROOT}
-fi
-
 # download source archive
-if [[ -z $URL ]]
-then
-    ARCHIVE_FILE=go${VERSION}.src.tar.gz
-    ARCHIVE_URL=${ARCHIVE_ROOT}/${ARCHIVE_FILE}
-else
-    ARCHIVE_FILE=${URL##*/}
-    ARCHIVE_URL=${URL}
-fi
+ARCHIVE_FILE=go${VERSION}.src.tar.gz
+ARCHIVE_URL=${ARCHIVE_ROOT}/${ARCHIVE_FILE}
 
 # download, expand archive and move to installation directory
 cd /tmp
